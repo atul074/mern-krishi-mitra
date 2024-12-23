@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
+const authRouter = require("./routes/auth/Auth-route");
 mongoose
   .connect("mongodb://localhost:27017/mern-krishi-mitra")
   .then(() => console.log("MongoDB connected"))
@@ -28,6 +28,8 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
+
+app.use("/api/auth", authRouter);
 
 
 app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));
