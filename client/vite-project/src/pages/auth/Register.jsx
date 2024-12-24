@@ -1,11 +1,12 @@
 
 
 
-import { registerUser } from "@/store/auth-slice/Index";
+//import { registerUser } from "@/store/auth-slice/Index";
+import { registerUser } from "../../store/auth-slice";
 import { Link,useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Alert } from "@/components/ui/alert"
+
 const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -17,7 +18,9 @@ const Register = () => {
     function onSubmit(event) {
         if (userSignup.userName === "" || userSignup.email === "" || userSignup.password === "") {
           
-            <Alert status="warning" title="All Fields are required">All Fields are required</Alert>
+            
+            alert("All Fields are required");
+            
             console.log("alert");
             
               return;
@@ -27,13 +30,12 @@ const Register = () => {
         console.log(data);
         
         if (data?.payload?.success) {
-          <Alert status="success" title={data?.payload?.message }/>
+        //   <Alert status="success" title={data?.payload?.message }/>
+          alert(data?.payload?.message);
           navigate("/auth/login");
         } else {
-          <Alert
-          status="info"
-          title={data?.payload?.message}
-        />
+          
+        alert(data?.payload?.message);
         }
       });
     }

@@ -17,9 +17,21 @@ import ShoppingCheckout from './pages/shopping/Checkout'
 import ShoppingAccount from './pages/shopping/Account'
 import CheckAuth from './components/common/Check-auth'
 
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { checkAuth } from "./store/auth-slice";
+
 function App() {
-const isAuthenticated=false;
-const user=null;
+const { user, isAuthenticated, isLoading } = useSelector(
+  (state) => state.auth
+);
+const dispatch = useDispatch();
+
+useEffect(() => {
+  dispatch(checkAuth());
+}, [dispatch]);
+
+if (isLoading) return(<div className='text-3xl text-center mt-40'> Loading....</div> );
   return (
     <>
      <Routes>

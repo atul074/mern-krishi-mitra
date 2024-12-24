@@ -4,32 +4,35 @@
 
   import { useState } from "react";
 import { Link ,useNavigate} from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../store/auth-slice";
 const Login = () => {
     
    
     // navigate 
     const navigate = useNavigate();
-
+    const dispatch = useDispatch(); 
     // User Signup State 
     const [userLogin, setUserLogin] = useState({
         email: "",
         password: ""
     });
 
-    const LoginFun = async () => {
-        // validation 
+    function onSubmit(event) {
         if (userLogin.email === "" || userLogin.password === "") {
-            // MySwal.fire({
-            //     title: 'All Feild are Required',
-            //     icon: 'warning',
-            //     confirmButtonText: 'ok'
-            //   });
+            alert("All Fields are required");
+            return;
         }
-   
-        
-    }
-
+        event.preventDefault();
+    
+        dispatch(loginUser(userLogin)).then((data) => {
+          if (data?.payload?.success) {
+            alert(data?.payload?.message);
+          } else {
+            alert(data?.payload?.message);
+          }
+        });
+      }
 
     return (
         <div>
@@ -82,7 +85,7 @@ const Login = () => {
                 <div className="mb-5">
                     <button
                         type='button'
-                        onClick={LoginFun}
+                        onClick={onSubmit}
                         className='bg-[#039b17] hover:bg-[#3B945E] w-full text-white text-center py-2 font-bold rounded-md '
                     >
                          
