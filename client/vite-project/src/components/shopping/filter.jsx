@@ -1,6 +1,6 @@
 function ProductFilter({ filters, handleFilter }) {
     const filterOptions = {
-      Category: [
+      category: [
         { id: "PLANT GROWTH REGULATOR", label: "PLANT GROWTH REGULATOR" },
         { id: "BIO STIMULATES", label: "BIO STIMULATES" },
         { id: "FUNGICIDES", label: "FUNGICIDES" },

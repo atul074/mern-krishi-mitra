@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import ProductFilter from "../../components/shopping/filter";
 import { fetchAllFilteredProducts } from "../../store/shop/products-slice";
-
+import ShoppingProductTile from "../../components/shopping/product-tile";
 function createSearchParamsHelper(filterParams) {
   const queryParams = [];
 
@@ -15,7 +15,7 @@ function createSearchParamsHelper(filterParams) {
     }
   }
 
-  console.log(queryParams, "queryParams");
+  //console.log(queryParams, "queryParams");
 
   return queryParams.join("&");
 }
@@ -42,6 +42,8 @@ function ShoppingListing() {
     setSort(value);
   }
   function handleFilter(getSectionId, getCurrentOption) {
+   // console.log(getSectionId,getCurrentOption);
+    
     let cpyFilters = { ...filters };
     const indexOfCurrentSection = Object.keys(cpyFilters).indexOf(getSectionId);
 
@@ -58,7 +60,8 @@ function ShoppingListing() {
         cpyFilters[getSectionId].push(getCurrentOption);
       else cpyFilters[getSectionId].splice(indexOfCurrentOption, 1);
     }
-
+    console.log(filters);
+    
     setFilters(cpyFilters);
     sessionStorage.setItem("filters", JSON.stringify(cpyFilters));
   }
@@ -115,7 +118,7 @@ function ShoppingListing() {
                 <span>Sort by</span>
               </button>
               {SortDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg">
+                <div className="absolute right-0 mt-2 w-48 z-30 bg-white border border-gray-200 rounded-lg shadow-lg">
                   <ul className="py-1">
                     {sortOptions.map((sortItem) => (
                       <li
@@ -138,15 +141,15 @@ function ShoppingListing() {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-          {/* {productList && productList.length > 0
+          {productList && productList.length > 0
             ? productList.map((productItem) => (
                 <ShoppingProductTile
-                  handleGetProductDetails={handleGetProductDetails}
+                  // handleGetProductDetails={handleGetProductDetails}
                   product={productItem}
-                  handleAddtoCart={handleAddtoCart}
+                  //handleAddtoCart={handleAddtoCart}
                 />
               ))
-            : null} */}
+            : null}
         </div>
       </div>
       {/* <ProductDetailsDialog
