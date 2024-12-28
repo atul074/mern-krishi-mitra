@@ -17,6 +17,6 @@ const multer = require("multer");
 //   return result;
 // }
 
-const upload = multer({ storage });
+//const upload = multer({ storage });
 
-module.exports = { upload, imageUploadUtil };
+//module.exports = { upload, imageUploadUtil };

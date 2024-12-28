@@ -1,4 +1,5 @@
 import axios from "axios";
+import AdminProductTile from "../../components/admin/product-tile";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -116,20 +117,20 @@ function AdminProducts() {
         });
   }
 
-  // function handleDelete(productId) {
-  //   dispatch(deleteProduct(productId)).then((data) => {
-  //     if (data?.payload?.success) {
-  //       dispatch(fetchAllProducts());
-  //     }
-  //   });
-  // }
+  function handleDelete(productId) {
+    dispatch(deleteProduct(productId)).then((data) => {
+      if (data?.payload?.success) {
+        dispatch(fetchAllProducts());
+      }
+    });
+  }
 
-  // function isFormValid() {
-  //   return Object.keys(formData)
-  //     .filter((key) => key !== "averageReview")
-  //     .map((key) => formData[key] !== "")
-  //     .every((item) => item);
-  // }
+  function isFormValid() {
+    return Object.keys(formData)
+      .filter((key) => key !== "averageReview")
+      .map((key) => formData[key] !== "")
+      .every((item) => item);
+  }
 
   async function uploadImageToCloudinary() {
     setImageLoadingState(true);
@@ -184,41 +185,18 @@ function AdminProducts() {
         </button>
       </div>
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {/* {productList && productList.length > 0
-          ? productList.map((product) => (
-              <div
-                key={product.id}
-                className="p-4 border rounded-md shadow-md flex flex-col items-start"
-              >
-                <img
-                  src={product.image || "https://via.placeholder.com/150"}
-                  alt={product.title}
-                  className="w-full h-32 object-cover rounded-md mb-2"
-                />
-                <h3 className="text-lg font-bold mb-1">{product.title}</h3>
-                <p className="text-gray-600 mb-2">{product.description}</p>
-                <p className="text-gray-800 font-bold mb-2">${product.price}</p>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => {
-                      setFormData(product);
-                      setOpenCreateProductsDialog(true);
-                      setCurrentEditedId(product.id);
-                    }}
-                    className="px-3 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(product.id)}
-                    className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            ))
-          : <p className="text-gray-700">No products found.</p>} */}
+         {productList && productList.length > 0
+          ? productList.map((productItem) => (
+            <AdminProductTile
+              setFormData={setFormData}
+              setOpenCreateProductsDialog={setOpenCreateProductsDialog}
+              setCurrentEditedId={setCurrentEditedId}
+              product={productItem}
+              handleDelete={handleDelete}
+            />
+          ))
+          : <p className="text-gray-700">No products found.</p>
+          }  
       </div>
       {openCreateProductsDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center">
@@ -308,7 +286,7 @@ function AdminProducts() {
               </div>
               <button
                 type="submit"
-                // disabled={!isFormValid()}
+                 disabled={!isFormValid()}
                 className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400"
               >
                 {currentEditedId !== null ? "Edit" : "Add"}
