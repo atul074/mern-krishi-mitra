@@ -15,6 +15,7 @@ import ShoppingHome from './pages/shopping/home'
 import ShoppingListing from './pages/shopping/Listing'
 import ShoppingCheckout from './pages/shopping/Checkout'
 import ShoppingAccount from './pages/shopping/Account'
+import ShoppingCart from './pages/shopping/Cart'
 import CheckAuth from './components/common/Check-auth'
 
 import { useDispatch, useSelector } from "react-redux";
@@ -81,6 +82,7 @@ if (isLoading) return(<div className='text-3xl text-center mt-40'> Loading....</
           <Route path="listing" element={<ShoppingListing/>} />
           <Route path="checkout" element={<ShoppingCheckout/>} />
           <Route path="account" element={<ShoppingAccount />} />
+          <Route path="cart" element={<ShoppingCart/>} />
           {/* <Route path="paypal-return" element={<PaypalReturnPage />} />
           <Route path="payment-success" element={<PaymentSuccessPage />} />
           <Route path="search" element={<SearchProducts />} /> */}

@@ -3,17 +3,21 @@ import {
     
    
   } from "react-router-dom";
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/auth-slice";
-
+import { fetchCartItems } from "../../store/shop/cart-slice";
 
 function ShoppingHeader() {
     const dispatch = useDispatch();
-
+    const { user } = useSelector((state) => state.auth);
+    const { cartItems } = useSelector((state) => state.shopCart);
     function handleLogout() {
       dispatch(logoutUser());
     }
+    useEffect(() => {
+      dispatch(fetchCartItems(user?.id));
+    }, [dispatch]);
     return(
         <header className="sticky top-0 z-40 w-full border-b bg-gradient-to-r from-[#2eaf7d] from-10% via-[#65CCB8] via-40% to-[#2eaf7d]  to-90% ... ">
         <div className="flex h-16 items-center justify-between px-4 md:px-6">
@@ -26,9 +30,9 @@ function ShoppingHeader() {
           <div className="">
             <ul className="text-black   cursor-pointer transition-all duration-400 relative group font-semibold text-base px-3 flex md:gap-2 lg:gap-2 sm: gap-2">
                 <li>
-                    <Link to={"/"} className="flex">
+                    <Link to={"/shop/cart"} className="flex">
                      <svg class="h-9 lg:h-10 p-1 text-gray-500" aria-hidden="true" focusable="false" data-prefix="far" data-icon="shopping-cart" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" ><path fill="currentColor" d="M551.991 64H144.28l-8.726-44.608C133.35 8.128 123.478 0 112 0H12C5.373 0 0 5.373 0 12v24c0 6.627 5.373 12 12 12h80.24l69.594 355.701C150.796 415.201 144 430.802 144 448c0 35.346 28.654 64 64 64s64-28.654 64-64a63.681 63.681 0 0 0-8.583-32h145.167a63.681 63.681 0 0 0-8.583 32c0 35.346 28.654 64 64 64 35.346 0 64-28.654 64-64 0-18.136-7.556-34.496-19.676-46.142l1.035-4.757c3.254-14.96-8.142-29.101-23.452-29.101H203.76l-9.39-48h312.405c11.29 0 21.054-7.869 23.452-18.902l45.216-208C578.695 78.139 567.299 64 551.991 64zM208 472c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm256 0c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm23.438-200H184.98l-31.31-160h368.548l-34.78 160z"></path></svg>
-                     <div class=" -top-1 left-0 z-10 bg-yellow-40 text-xs font-bold px- py-0.5 rounded-sm">12</div>
+                     <div class=" -top-1 left-0 z-10 bg-yellow-40 text-xs font-bold px- py-0.5 rounded-sm"> {cartItems?.items?.length || 0}</div>
                     
                     </Link>
                 </li>
