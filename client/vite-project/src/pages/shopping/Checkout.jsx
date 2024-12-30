@@ -3,12 +3,12 @@ import img from "../../assets/react.svg";
 import { useDispatch, useSelector } from "react-redux";
 import UserCartItemsContent from "../../components/shopping/cart-items-content";
 import { useState } from "react";
-//import { createNewOrder } from "../../store/shop/order-slice";
+import { createNewOrder } from "../../store/shop/order-slice";
 
 function ShoppingCheckout() {
   const { cartItems } = useSelector((state) => state.shopCart);
   const { user } = useSelector((state) => state.auth);
-  //const { approvalURL } = useSelector((state) => state.shopOrder);
+  const { approvalURL } = useSelector((state) => state.shopOrder);
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
   const [isPaymentStart, setIsPaymemntStart] = useState(false);
   const dispatch = useDispatch();
@@ -78,9 +78,9 @@ function ShoppingCheckout() {
     });
   }
 
-  // if (approvalURL) {
-  //   window.location.href = approvalURL;
-  // }
+  if (approvalURL) {
+    window.location.href = approvalURL;
+  }
 
   return (
     <div className="flex flex-col">
