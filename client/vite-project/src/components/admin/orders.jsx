@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AdminOrderDetailsView from "./order-details";
-import {
-  getAllOrdersForAdmin,
-  getOrderDetailsForAdmin,
-  resetOrderDetails,
-} from "../../store/admin/order-slice";
+import {getAllOrdersForAdmin,getOrderDetailsForAdmin,resetOrderDetails,} from "../../store/admin/order-slice";
 
 function AdminOrdersView() {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
@@ -91,7 +87,7 @@ function AdminOrdersView() {
                 setOpenDetailsDialog(false);
                 dispatch(resetOrderDetails());
               }}
-              className="mb-4 text-red-500 font-medium"
+              className="mb-4 text-red-500 font-medium border border-red-500 px-1"
             >
               Close
             </button>
@@ -99,9 +95,9 @@ function AdminOrdersView() {
               {/* Replace this with your order details component */}
               <AdminOrderDetailsView orderDetails={orderDetails} />
               <h3 className="text-lg font-semibold mb-2">Order Details</h3>
-              <pre className="bg-gray-100 p-2 rounded">
+              {/* <pre className="bg-gray-100 p-2 rounded">
                 {JSON.stringify(orderDetails, null, 2)}
-              </pre>
+              </pre> */}
             </div>
           </div>
         </div>

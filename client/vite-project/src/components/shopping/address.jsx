@@ -96,12 +96,12 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
         {addressList && addressList.length > 0 ? (
           addressList.map((singleAddressItem) => (
-            <div
+            <div onClick={setCurrentSelectedAddress ?()=> setCurrentSelectedAddress(singleAddressItem):null}
               key={singleAddressItem?._id}
-              className={`p-4 border rounded-lg ${
-                selectedId === singleAddressItem?._id
-                  ? "border-blue-500"
-                  : "border-gray-300"
+              className={`p-4 border rounded-lg border-gray-300 ${ selectedId?
+                (selectedId?._id === singleAddressItem?._id
+                  ? "bg-gray-400"
+                  : ""): "border-green-400"
               }`}
             >
               <p>

@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllOrdersForAdmin,
-  getOrderDetailsForAdmin,
-  updateOrderStatus,
-} from "@/store/admin/order-slice";
+import {getAllOrdersForAdmin,getOrderDetailsForAdmin,updateOrderStatus,} from "../../store/admin/order-slice";
 
 const initialFormData = {
   status: "",
@@ -89,7 +85,7 @@ function AdminOrderDetailsView({ orderDetails }) {
             )}
           </ul>
         </div>
-
+        <hr className="my-4 border-gray-300" />
         <div>
           <h3 className="font-medium">Shipping Info</h3>
           <div className="space-y-1 text-gray-600">
@@ -101,7 +97,7 @@ function AdminOrderDetailsView({ orderDetails }) {
             <p>{orderDetails?.addressInfo?.notes}</p>
           </div>
         </div>
-
+        <hr className="my-4 border-gray-300" />
         <form onSubmit={handleUpdateStatus} className="space-y-4">
           <div>
             <label htmlFor="status" className="block font-medium">
@@ -114,7 +110,7 @@ function AdminOrderDetailsView({ orderDetails }) {
               onChange={(e) =>
                 setFormData({ ...formData, status: e.target.value })
               }
-              className="w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="w-full mt-1 border py-1 border-gray-200 shadow-md rounded-md  focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="">Select Status</option>
               <option value="pending">Pending</option>
@@ -124,12 +120,14 @@ function AdminOrderDetailsView({ orderDetails }) {
               <option value="rejected">Rejected</option>
             </select>
           </div>
+          <div className="flex items-center justify-center">
           <button
             type="submit"
-            className="px-4 py-2 font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
+            className="px-3 py-2 w-full font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 object-center"
           >
             Update Order Status
           </button>
+          </div>
         </form>
       </div>
     </div>

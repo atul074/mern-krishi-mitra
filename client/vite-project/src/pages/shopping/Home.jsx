@@ -153,6 +153,9 @@ function ShoppingHome() {
         className="video-content space-y-2 z-10 px-16">
        
         <h3 className="font-normal text-xl mt-40">कृषि मित्र समीक्षा में आपका स्वागत है, जो आपके खेत के लिए सर्वोत्तम कृषि रसायनों को खोजने का आपका प्रमुख मंच है। यहाँ, आप अपने सह-किसानों से विस्तृत रेटिंग्स देख सकते हैं, जो आपको अपनी विशिष्ट आवश्यकताओं के अनुसार उत्पाद चुनने में मदद करती हैं। हमारे समुदाय संचालित अंतर्दृष्टि सुनिश्चित करती हैं कि आप स्वस्थ फसलों और उच्च उपज के लिए सूचित निर्णय लें। हमारे साथ जुड़ें और साझा अनुभवों के माध्यम से स्मार्ट और प्रभावी कृषि प्रथाओं को बढ़ावा दें।</h3>
+       <div className=""> 
+        <button className="px-8 py-2 bg- bg-[#4cb08a]  duration-300 rounded-lg shadow-md  my-3 p-3 text-center hover:bg-[#098354] hover:scale-110   transition-all font-bold  mt-3" onClick={()=>navigate("/shop/listing")}> Shop Products</button>
+       </div>
       </div>
         </section>
     

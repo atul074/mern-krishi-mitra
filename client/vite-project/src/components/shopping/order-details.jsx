@@ -4,7 +4,7 @@ function ShoppingOrderDetailsView({ orderDetails }) {
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <div className="p-6 bg-white rounded-md shadow-md max-w-lg mx-auto">
+    <div className="p-6 bg-white rounded-md shadow-md max-w-lg mx-auto max-h">
       <div className="space-y-6">
         <div className="space-y-2">
           <div className="flex justify-between items-center">

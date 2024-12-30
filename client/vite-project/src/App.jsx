@@ -17,6 +17,8 @@ import ShoppingCheckout from './pages/shopping/Checkout'
 import ShoppingAccount from './pages/shopping/Account'
 import ShoppingCart from './pages/shopping/Cart'
 import CheckAuth from './components/common/Check-auth'
+import PaymentSuccessPage from './pages/shopping/payment-success'
+import PaypalReturnPage from './pages/shopping/paypal-return'
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -83,9 +85,9 @@ if (isLoading) return(<div className='text-3xl text-center mt-40'> Loading....</
           <Route path="checkout" element={<ShoppingCheckout/>} />
           <Route path="account" element={<ShoppingAccount />} />
           <Route path="cart" element={<ShoppingCart/>} />
-          {/* <Route path="paypal-return" element={<PaypalReturnPage />} />
+          <Route path="paypal-return" element={<PaypalReturnPage />} />
           <Route path="payment-success" element={<PaymentSuccessPage />} />
-          <Route path="search" element={<SearchProducts />} /> */}
+          {/* <Route path="search" element={<SearchProducts />} /> */}
         </Route>
         <Route path="/unauth-page" element={<UnauthPage/>} />
         <Route path="*" element={<NotFound/>} />

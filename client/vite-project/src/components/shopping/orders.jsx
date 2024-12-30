@@ -95,7 +95,7 @@ function ShoppingOrders() {
                 setOpenDetailsDialog(false);
                 dispatch(resetOrderDetails());
               }}
-              className="mb-4 text-red-500 font-medium"
+              className="mb-4 text-red-500 font-medium border border-red-500 px-1"
             >
               Close
             </button>
@@ -103,10 +103,10 @@ function ShoppingOrders() {
               {/* Replace this with your order details component */}
               <ShoppingOrderDetailsView orderDetails={orderDetails} />
               <h3 className="text-lg font-semibold mb-2">Order Details</h3>
-              <pre className="bg-gray-100 p-2 rounded">
+              {/* <pre className="bg-gray-100 p-2 rounded">
                 {JSON.stringify(orderDetails, null, 2)}
-              </pre>
-            </div>
+              </pre> */}
+            </div>  
           </div>
         </div>
       )}
