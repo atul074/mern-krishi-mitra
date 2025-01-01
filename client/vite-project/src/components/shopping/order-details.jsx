@@ -61,7 +61,7 @@ function ShoppingOrderDetailsView({ orderDetails }) {
             )}
           </ul>
         </div>
-
+        <hr className="border-gray-300" />
         <div>
           <h3 className="font-medium mb-2">Shipping Info</h3>
           <div className="space-y-1 text-gray-600">

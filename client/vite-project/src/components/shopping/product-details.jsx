@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, fetchCartItems } from "../../store/shop/cart-slice";
 import { setProductDetails } from "../../store/shop/products-slice";
-//import { addReview, getReviews } from "@/store/shop/review-slice";
+import StarRatingComponent from "../common/star-rating";
+import { addReview, getReviews } from "../../store/shop/review-slice";
 
 function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const [reviewMsg, setReviewMsg] = useState("");
@@ -10,14 +11,14 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.shopCart);
-  //const { reviews } = useSelector((state) => state.shopReview);
+  const { reviews } = useSelector((state) => state.shopReview);
 
-//   useEffect(() => {
-//     if (productDetails !== null) dispatch(getReviews(productDetails?._id));
-//   }, [productDetails]);
+  useEffect(() => {
+    if (productDetails !== null) dispatch(getReviews(productDetails?._id));
+  }, [productDetails]);
 
-//   const averageReview = reviews && reviews.length > 0 ?
-//         reviews.reduce((sum, reviewItem) => sum + reviewItem.reviewValue, 0) / reviews.length : 0;
+  const averageReview = reviews && reviews.length > 0 ?
+        reviews.reduce((sum, reviewItem) => sum + reviewItem.reviewValue, 0) / reviews.length : 0;
 
   const handleDialogClose = () => {
     setOpen(false);
@@ -48,22 +49,28 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
     alert("Product is added to cart");
   };
 
-//   const handleAddReview = () => {
-//     dispatch(
-//       addReview({
-//         productId: productDetails?._id,
-//         userId: user?.id,
-//         userName: user?.userName,
-//         reviewMessage: reviewMsg,
-//         reviewValue: rating,
-//       })
-//     ).then(() => {
-//       setRating(0);
-//       setReviewMsg("");
-//       dispatch(getReviews(productDetails?._id));
-//       alert("Review added successfully!");
-//     });
-//   };
+  function handleRatingChange(getRating) {
+    //console.log(getRating, "getRating");
+
+    setRating(getRating);
+  }
+
+  const handleAddReview = () => {
+    dispatch(
+      addReview({
+        productId: productDetails?._id,
+        userId: user?.id,
+        userName: user?.userName,
+        reviewMessage: reviewMsg,
+        reviewValue: rating,
+      })
+    ).then(() => {
+      setRating(0);
+      setReviewMsg("");
+      dispatch(getReviews(productDetails?._id));
+      alert("Review added successfully!");
+    });
+  };
 
   if (!open) return null;
 
@@ -105,15 +112,19 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                 </p>
               )}
             </div>
+           
             <div className="mt-4">
-              <p className="font-bold">Average Rating:</p>
-              {/* <div className="flex items-center gap-2">
-                <div className="text-yellow-400">
+              <p className="font-semibold text-sm">Average Rating: ({averageReview.toFixed(2)})</p>
+              
+              <div className="flex items-center">
+                {/* <div className="text-yellow-400">
                   {"★".repeat(Math.round(averageReview))}
                   {"☆".repeat(5 - Math.round(averageReview))}
-                </div>
-                <span>({averageReview.toFixed(2)})</span>
-              </div> */}
+                </div> */}
+                 <StarRatingComponent rating={averageReview} />
+               
+              </div>
+            
             </div>
             <button
               className={`w-full mt-6 py-2 px-4 rounded ${
@@ -133,33 +144,36 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
             </button>
           </div>
         </div>
-        <div className="mt-6">
+        <hr className="border-gray-300 mt-3" />
+        <div className="mt-">
           <h2 className="text-lg font-bold">Reviews</h2>
           <div className="mt-4 space-y-4 max-h-60 overflow-auto">
-            {/* {reviews && reviews.length > 0 ? (
+            {reviews && reviews.length > 0 ? (
               reviews.map((review) => (
                 <div key={review._id} className="flex gap-4">
                   <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200">
-                    {review.userName[0].toUpperCase()}
+                    {review?.userName[0].toUpperCase()}
                   </div>
                   <div>
-                    <p className="font-bold">{review.userName}</p>
-                    <div className="text-yellow-400">
-                      {"★".repeat(review.reviewValue)}
-                      {"☆".repeat(5 - review.reviewValue)}
-                    </div>
-                    <p className="text-gray-600">{review.reviewMessage}</p>
+                    <p className="font-bold">{review?.userName}</p>
+                     {/* <div className="text-yellow-400">
+                       {"★".repeat(review.reviewValue)}
+                       {"☆".repeat(5 - review.reviewValue)}
+                     </div> */}
+                    <StarRatingComponent rating={review?.reviewValue} />
+                    <p className="text-gray-600">{review?.reviewMessage}</p>
                   </div>
                 </div>
               ))
             ) : (
               <p>No reviews yet.</p>
-            )} */}
+            )} 
           </div>
-          <div className="mt-4">
+          <hr className="border-gray-300 mt-2" />
+          <div className="mt-2">
             <label className="block font-bold mb-2">Write a Review</label>
             <div className="flex gap-2">
-              <div className="text-yellow-400">
+              {/* <div className="text-yellow-400">
                 {"★".repeat(rating)}{" "}
                 {"☆".repeat(5 - rating)}
               </div>
@@ -170,7 +184,12 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                 max="5"
                 min="1"
                 className="w-12 border rounded px-1"
-              />
+              /> */}
+                <StarRatingComponent
+                  rating={rating}
+                  handleRatingChange={handleRatingChange}
+                />
+              
             </div>
             <textarea
               value={reviewMsg}
@@ -180,9 +199,9 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
               placeholder="Write your review..."
             ></textarea>
             <button
-              className="bg-blue-600 text-white py-2 px-4 rounded mt-2"
-            //   onClick={handleAddReview}
-              disabled={!reviewMsg.trim()}
+              className="bg-blue-600 text-white py-2 px-4 rounded mt-2 hover:bg-blue-400 disabled:bg-slate-500"
+               onClick={handleAddReview}
+              disabled={reviewMsg.trim()===""}
             >
               Submit
             </button>
