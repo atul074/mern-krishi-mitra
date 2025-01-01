@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRouter = require("./routes/auth/Auth-route");
 const adminProductsRouter = require("./routes/admin/product-routes");
 const adminOrderRouter = require("./routes/admin/order-routes");
+const adminUserRouter=require("./routes/admin/user-routes");
 require('dotenv').config();
   
 const shopProductsRouter = require("./routes/shop/products-routes");
@@ -43,6 +44,7 @@ app.use(express.json());
 app.use("/api/auth", authRouter);
 app.use("/api/admin/products", adminProductsRouter);
 app.use("/api/admin/orders", adminOrderRouter);
+app.use("/api/admin/users",adminUserRouter)
 
 app.use("/api/shop/products", shopProductsRouter);
 app.use("/api/shop/cart", shopCartRouter);
