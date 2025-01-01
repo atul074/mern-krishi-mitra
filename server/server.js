@@ -21,10 +21,10 @@ mongoose
   .catch((error) => console.log(error));
 
 const app = express();
-const PORT = process.env.PORT  ;
+const PORT = process.env.PORT ||8000 ;
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
@@ -51,4 +51,4 @@ app.use("/api/shop/order", shopOrderRouter);
 app.use("/api/shop/search", shopSearchRouter);
 app.use("/api/shop/review", shopReviewRouter);
 
-app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server is now running on port ${PORT }`));

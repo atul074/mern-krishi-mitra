@@ -57,18 +57,21 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
 
   const handleAddReview = () => {
     dispatch(
-      addReview({
+       addReview({
         productId: productDetails?._id,
         userId: user?.id,
         userName: user?.userName,
         reviewMessage: reviewMsg,
         reviewValue: rating,
       })
-    ).then(() => {
+    ).then((data) => {
+      
+      //console.log(data);
+      
       setRating(0);
       setReviewMsg("");
       dispatch(getReviews(productDetails?._id));
-      alert("Review added successfully!");
+      (data?.payload)?alert("Review added successfully!"):alert("Review not added!") ;
     });
   };
 
