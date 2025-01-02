@@ -74,14 +74,14 @@ function SearchProducts() {
   console.log(searchResults, "searchResults");
 
   return (
-    <div className="container mx-auto md:px-6 px-4 py-8">
+    <div className="container mx-auto md:px-6 px-4 py-8 ">
       <div className="flex justify-center mb-8">
         <div className="w-full flex items-center">
           <input
             value={keyword}
             name="keyword"
             onChange={(event) => setKeyword(event.target.value)}
-            className="w-full py-3 px-4 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-300"
+            className="w-full py-3 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-lime-500"
             placeholder="Search Products..."
           />
         </div>

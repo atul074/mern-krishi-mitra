@@ -98,10 +98,10 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
           addressList.map((singleAddressItem) => (
             <div onClick={setCurrentSelectedAddress ?()=> setCurrentSelectedAddress(singleAddressItem):null}
               key={singleAddressItem?._id}
-              className={`p-4 border rounded-lg border-gray-300 ${ selectedId?
+              className={`p-4 border rounded-lg border-gray-300 shadow-xl ${ selectedId?
                 (selectedId?._id === singleAddressItem?._id
-                  ? "bg-gray-400"
-                  : ""): "border-green-400"
+                  ? "bg-gray-300 scale-105 border-[#02353c] border-2 shadow-2xl"
+                  : " "): "border-[#02353c] bg-gray-200 "
               }`}
             >
               <p>
@@ -122,7 +122,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
               <div className="flex gap-2 mt-2">
                 <button
                   onClick={() => handleEditAddress(singleAddressItem)}
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                  className="bg-[#464a4b] text-white px-4 py-2 rounded hover:bg-[#182628]"
                 >
                   Edit
                 </button>
@@ -204,7 +204,7 @@ function Address({ setCurrentSelectedAddress, selectedId }) {
             type="submit"
             disabled={!isFormValid()}
             className={`w-full py-2 rounded text-white ${
-              isFormValid() ? "bg-green-500 hover:bg-green-600" : "bg-gray-300"
+              isFormValid() ? "bg-[#02353c]   hover:bg-[#929191] hover:border-[#02353c] border-2 hover:text-[#02353c] " : "bg-gray-300"
             }`}
           >
             {currentEditedId !== null ? "Update Address" : "Add Address"}

@@ -21,15 +21,17 @@ function ProductFilter({ filters, handleFilter }) {
     
   
     return (
-      <div className="bg-white rounded-lg shadow-sm border">
+      <div className="bg-gray-300 rounded-lg shadow-sm border">
         <div className="p-4 border-b">
           <h2 className="text-lg font-bold">Filters</h2>
         </div>
+        <hr className="border-gray-600" />
         <div className="p-4 space-y-4">
           {Object.keys(filterOptions).map((keyItem, index) => (
             <div key={index}>
               <h3 className="text-base font-semibold mb-2">{keyItem}</h3>
-              <div className="grid gap-2">
+              <hr className="border-gray-400" />
+              <div className="grid gap-2 mt-2">
                 {filterOptions[keyItem].map((option) => (
                   <label
                     key={option.id}
@@ -37,7 +39,7 @@ function ProductFilter({ filters, handleFilter }) {
                   >
                     <input
                       type="checkbox"
-                      className="form-checkbox h-4 w-4 text-blue-600 border-gray-300 rounded"
+                      className="form-checkbox h-7 w-4 text-red-600 border-gray-800 rounded"
                       checked={
                         filters &&
                         filters[keyItem] &&
@@ -45,12 +47,12 @@ function ProductFilter({ filters, handleFilter }) {
                       }
                       onChange={() => handleFilter(keyItem, option.id)}
                     />
-                    <span className="text-sm text-gray-700">{option.label}</span>
+                    <span className="text-sm text-gray-800">{option.label}</span>
                   </label>
                 ))}
               </div>
               {index < Object.keys(filterOptions).length - 1 && (
-                <hr className="my-4 border-gray-200" />
+                <hr className="my-4 border-gray-800" />
               )}
             </div>
           ))}

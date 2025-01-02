@@ -28,7 +28,7 @@ function AdminOrderDetailsView({ orderDetails }) {
   }
 
   return (
-    <div className="p-6 bg-white rounded-md shadow-md">
+    <div className="p-6 bg-white rounded-md shadow-md overflow-y-scroll">
       <div className="space-y-4">
         <div className="space-y-2">
           <div className="flex justify-between">

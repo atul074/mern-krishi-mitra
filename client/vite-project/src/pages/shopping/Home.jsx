@@ -154,7 +154,7 @@ function ShoppingHome() {
        
         <h3 className="font-normal text-xl mt-40">कृषि मित्र समीक्षा में आपका स्वागत है, जो आपके खेत के लिए सर्वोत्तम कृषि रसायनों को खोजने का आपका प्रमुख मंच है। यहाँ, आप अपने सह-किसानों से विस्तृत रेटिंग्स देख सकते हैं, जो आपको अपनी विशिष्ट आवश्यकताओं के अनुसार उत्पाद चुनने में मदद करती हैं। हमारे समुदाय संचालित अंतर्दृष्टि सुनिश्चित करती हैं कि आप स्वस्थ फसलों और उच्च उपज के लिए सूचित निर्णय लें। हमारे साथ जुड़ें और साझा अनुभवों के माध्यम से स्मार्ट और प्रभावी कृषि प्रथाओं को बढ़ावा दें।</h3>
        <div className=""> 
-        <button className="px-8 py-2 bg- bg-[#4cb08a]  duration-300 rounded-lg shadow-md  my-3 p-3 text-center hover:bg-[#098354] hover:scale-110   transition-all font-bold  mt-3" onClick={()=>navigate("/shop/listing")}> Shop Products</button>
+        <button className="px-8 py-2 bg- bg-[#4cb08a]  duration-300 rounded-lg shadow-md  my-3 p-3 text-center hover:bg-[#098354] hover:scale-110   transition-all font-bold  mt-3 text-black" onClick={()=>navigate("/shop/listing")}> Shop Products</button>
        </div>
       </div>
         </section>
@@ -199,12 +199,13 @@ function ShoppingHome() {
                 </div>
             </div>
 
-        <section className="py-12">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">
+        <section className="py-12 bg-[#2eaf7d]">
+        <div className="container mx-auto px-4 ">
+          <h2 className="text-3xl font-bold text-center mb-8 bg-gray-400 py-3 rounded-3xl">
             Feature Products
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 bg-gray-200 px-5">
             {productList && productList.length > 0
               ? productList.map((productItem) => (
                   <ShoppingProductTile
@@ -214,6 +215,7 @@ function ShoppingHome() {
                   />
                 ))
               : null}
+          </div>
           </div>
         </div>
       </section>

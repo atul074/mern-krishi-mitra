@@ -78,10 +78,10 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-lg w-3/4 max-w-lg max-h-full p-5 overflow-y-auto">
+    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+      <div className="bg-[#2eaf7d] rounded-lg shadow-lg w-3/4 max-w-lg max-h-full p-5 overflow-y-auto">
         <button
-          className="absolut top-4 right-4 "
+          className="absolut top-12 left-22  "
           onClick={handleDialogClose}
         >
           <svg class="w-8 h-8 text-gray-800 dark:text-red-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -90,27 +90,27 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
 
 
         </button>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-200 p-4 rounded-2xl">
           <div className="relative overflow-hidden rounded-lg max-h-96">
             <img
               src={productDetails?.image}
               alt={productDetails?.title}
-              className="w-full h-auto object-cover"
+              className="w-full h-auto object-cover shadow-xl"
             />
           </div>
-          <div>
+          <div className="bg- ">
             <h1 className="text-2xl font-bold">{productDetails?.title}</h1>
-            <p className="text-gray-700 mt-4">{productDetails?.description}</p>
+            <p className="text-gray-800 mt-4">{productDetails?.description}</p>
             <div className="flex justify-between items-center mt-4">
               <p
                 className={`text-xl font-bold ${
-                  productDetails?.salePrice > 0 ? "line-through text-red-600" : ""
+                  productDetails?.salePrice > 0 ? "line-through text-red-800" : ""
                 }`}
               >
                 ${productDetails?.price}
               </p>
               {productDetails?.salePrice > 0 && (
-                <p className="text-lg font-bold text-green-600">
+                <p className="text-xl font-semibold text-red-600">
                   ${productDetails?.salePrice}
                 </p>
               )}
@@ -132,8 +132,8 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
             <button
               className={`w-full mt-6 py-2 px-4 rounded ${
                 productDetails?.totalStock === 0
-                  ? "bg-gray-300 cursor-not-allowed"
-                  : "bg-blue-600 text-white"
+                  ? "bg-[#02353c] w-full text-white cursor-not-allowed"
+                  : "bg-[#02353c] hover:bg-white hover:text-[#02353c] w-full text-white  rounded-lg font-bold"
               }`}
               onClick={() =>
                 handleAddToCart(
@@ -149,7 +149,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
         </div>
         <hr className="border-gray-300 mt-3" />
         <div className="mt-">
-          <h2 className="text-lg font-bold">Reviews</h2>
+          <h2 className="text-lg font-bold text-black">Reviews</h2>
           <div className="mt-4 space-y-4 max-h-60 overflow-auto">
             {reviews && reviews.length > 0 ? (
               reviews.map((review) => (
@@ -164,7 +164,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                        {"☆".repeat(5 - review.reviewValue)}
                      </div> */}
                     <StarRatingComponent rating={review?.reviewValue} />
-                    <p className="text-gray-600">{review?.reviewMessage}</p>
+                    <p className="text-gray-800">{review?.reviewMessage}</p>
                   </div>
                 </div>
               ))
@@ -174,7 +174,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
           </div>
           <hr className="border-gray-300 mt-2" />
           <div className="mt-2">
-            <label className="block font-bold mb-2">Write a Review</label>
+            <label className="block font-bold mb-2 text-black">Write a Review</label>
             <div className="flex gap-2">
               {/* <div className="text-yellow-400">
                 {"★".repeat(rating)}{" "}
@@ -197,12 +197,12 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
             <textarea
               value={reviewMsg}
               onChange={(e) => setReviewMsg(e.target.value)}
-              className="w-full mt-2 border rounded p-2"
+              className="w-full mt-2 border rounded p-2 bg-gray-200"
               rows="3"
               placeholder="Write your review..."
             ></textarea>
             <button
-              className="bg-blue-600 text-white py-2 px-4 rounded mt-2 hover:bg-blue-400 disabled:bg-slate-500"
+              className="bg-[#02353c] hover:bg-white hover:text-[#02353c] w-ful text-white  rounded-lg font-bold py-2 px-4  mt-2 disabled:bg-stone-500"
                onClick={handleAddReview}
               disabled={reviewMsg.trim()===""}
             >

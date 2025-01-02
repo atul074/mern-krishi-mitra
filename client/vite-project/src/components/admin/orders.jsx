@@ -80,14 +80,14 @@ function AdminOrdersView() {
       </div>
 
       {openDetailsDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center overflow-y-scroll">
           <div className="bg-white rounded-md p-5 w-11/12 max-w-lg">
             <button
               onClick={() => {
                 setOpenDetailsDialog(false);
                 dispatch(resetOrderDetails());
               }}
-              className="mb-4 text-red-500 font-medium border border-red-500 px-1"
+              className="mb-4 text-red-500 font-medium border border-red-500 px-2 mt-8"
             >
               Close
             </button>

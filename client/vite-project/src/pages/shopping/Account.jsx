@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import accImg from "../../assets/react.svg";
 
 import Address from "../../components/shopping/address";
@@ -6,12 +7,14 @@ import ShoppingOrders from "../../components/shopping/orders";
 
 function ShoppingAccount() {
   
-
-
+ 
+ useEffect(() => {
+  toggleTab('orders');
+  }, []);
   
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-[#2eaf7d]">
       {/* Account Image */}
       {/* <div className="relative h-[300px] w-full overflow-hidden">
         <img
@@ -21,20 +24,20 @@ function ShoppingAccount() {
         />
       </div> */}
       {/* Content Section */}
-      <div className="container mx-auto grid grid-cols-1 gap-8 py-8">
-        <div className="flex flex-col rounded-lg border bg-white p-6 shadow-sm">
+      <div className="container mx-auto grid grid-cols-1 gap-8 py-8 shadow-xl shadow-black">
+        <div className="flex flex-col rounded-lg border bg-gray-200 p-6 shadow-sm">
           {/* Tabs Navigation */}
-          <div className="flex border-b border-gray-200">
+          <div className="flex border-b border-gray-200 gap-6">
             <button
               id="tab-orders"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 active:text-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 active:text-blue-500 focus:outline-none focus:ring focus:ring-gray-800"
               onClick={() => toggleTab('orders')}
             >
               Orders
             </button>
             <button
               id="tab-address"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 active:text-blue-500 focus:outline-none focus:ring focus:ring-blue-300"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 active:text-blue-500 focus:outline-none focus:ring focus:ring-gray-800"
               onClick={() => toggleTab('address')}
             >
               Address

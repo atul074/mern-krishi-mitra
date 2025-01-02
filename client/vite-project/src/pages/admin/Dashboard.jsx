@@ -14,7 +14,7 @@ function AdminDashboard() {
       <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg">
         <h1 className="text-2xl font-bold text-gray-800 text-center py-4">
-          Users List
+          Users List  ({userList.length})
         </h1>
         <div className="overflow-x-auto">
           <table className="table-auto w-full border-collapse border border-gray-300">

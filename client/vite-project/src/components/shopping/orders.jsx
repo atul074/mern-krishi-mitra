@@ -66,7 +66,7 @@ function ShoppingOrders() {
                   <td className="px-4 py-2 text-center">
                     <button
                       onClick={() => handleFetchOrderDetails(orderItem?._id)}
-                      className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-1 px-3 rounded"
+                      className="hover:bg-[#02353c] bg-[#c1f6ed] text-[#02353c]  hover:text-white font-medium py-1 px-3 rounded"
                     >
                       View Details
                     </button>
@@ -88,18 +88,18 @@ function ShoppingOrders() {
       </div>
 
       {openDetailsDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white rounded-md p-5 w-11/12 max-w-lg">
+        <div className="fixed inset-0 bg-black bg-opacity-65 flex justify-center items-center">
+          <div className="bg-[#d2d2d6] rounded-md p-5 w-11/12 max-w-lg">
             <button
               onClick={() => {
                 setOpenDetailsDialog(false);
                 dispatch(resetOrderDetails());
               }}
-              className="mb-4 text-red-500 font-medium border border-red-500 px-1"
+              className="mb-4 text-red-500 font-medium border border-red-500 px-1 hover:scale-110 duration-200 hover:bg-red-500 hover:text-black"
             >
               Close
             </button>
-            <div>
+            <div className="">
               {/* Replace this with your order details component */}
               <ShoppingOrderDetailsView orderDetails={orderDetails} />
               <h3 className="text-lg font-semibold mb-2">Order Details</h3>

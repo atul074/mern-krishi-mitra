@@ -8,7 +8,7 @@ function StarRatingComponent({ rating, handleRatingChange }) {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className="w-6 h-6"
+        className="w-4 h-4"
       >
         <path d="M12 .587l3.668 7.429L24 9.742l-6 5.844 1.417 8.274L12 19.623 4.583 23.86 6 15.585l-6-5.843 8.332-1.726L12 .587z" />
       </svg>

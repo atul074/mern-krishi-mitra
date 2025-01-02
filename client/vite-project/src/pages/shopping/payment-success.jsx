@@ -10,7 +10,7 @@ function PaymentSuccessPage() {
           Payment is successful!
         </h1>
         <button
-          className="mt-5 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="mt-5 px-6 py-2 bg-[#02353c] hover:bg-gray-200 hover:text-[#02353c] hover:border-2 border-[#02353c] text-white rounded-xl"
           onClick={() => navigate("/shop/account")}
         >
           View Orders
