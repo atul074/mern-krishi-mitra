@@ -6,7 +6,7 @@ import { registerUser } from "../../store/auth-slice";
 import { Link,useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
+import bg from "../../assets/bg.jpg"
 const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ const Register = () => {
         console.log(data);
         
         if (data?.payload?.success) {
-        //   <Alert status="success" title={data?.payload?.message }/>
+        
           alert(data?.payload?.message);
           navigate("/auth/login");
         } else {
@@ -42,8 +42,8 @@ const Register = () => {
   
 
     return (
-        <div className='flex justify-center items-center  h-screen bg-[#C1F6ED]'>
-            <div className="login_Form bg-[#7ccda2] px-1 lg:px-8 py-6  border border-[#182628] rounded-xl shadow-md">
+        <div className='flex justify-center items-center h-screen  bg-center bg-cover filter  ' style={{ backgroundImage: `url(${bg})` }}>
+            <div className="login_Form scale-150 bg-[#7ccda2] px-1 lg:px-8 py-6  border border-[#182628] rounded-xl shadow-md">
 
                 {/* Top Heading  */}
                 <div className="mb-5">

@@ -6,6 +6,7 @@
 import { Link ,useNavigate} from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../store/auth-slice";
+import bg from "../../assets/bg.jpg"
 const Login = () => {
     
    
@@ -36,9 +37,9 @@ const Login = () => {
 
     return (
         <div>
-        <div className='flex justify-center items-center h-screen   bg-[#C1F6ED]'>
+        <div className='flex justify-center items-center h-screen  bg-center bg-cover filter  ' style={{ backgroundImage: `url(${bg})` }}>
              
-            <div className="login_Form  bg-[#7ccda2] px-1 lg:px-8 py-6   border border-[#182628] rounded-xl shadow-md">
+            <div className="login_Form scale-150 bg-[#7ccda2] px-1 lg:px-8 py-6   border border-[#182628] rounded-xl shadow-md">
 
               
                 <div className="mb-5">
