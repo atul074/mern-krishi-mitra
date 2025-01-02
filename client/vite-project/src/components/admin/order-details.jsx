@@ -28,7 +28,7 @@ function AdminOrderDetailsView({ orderDetails }) {
   }
 
   return (
-    <div className="p-6 bg-white rounded-md shadow-md overflow-y-scroll">
+    <div className="p-6 bg-gray-200 rounded-md shadow-md overflow-y-scroll">
       <div className="space-y-4">
         <div className="space-y-2">
           <div className="flex justify-between">
@@ -110,7 +110,7 @@ function AdminOrderDetailsView({ orderDetails }) {
               onChange={(e) =>
                 setFormData({ ...formData, status: e.target.value })
               }
-              className="w-full mt-1 border py-1 border-gray-200 shadow-md rounded-md  focus:ring-blue-500 focus:border-blue-500"
+              className="w-full mt-1 border py-1 border-gray-200 shadow-md rounded-md  focus:ring-green-500 focus:border-green-500"
             >
               <option value="">Select Status</option>
               <option value="pending">Pending</option>
@@ -123,7 +123,7 @@ function AdminOrderDetailsView({ orderDetails }) {
           <div className="flex items-center justify-center">
           <button
             type="submit"
-            className="px-3 py-2 w-full font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 object-center"
+            className="px-3 py-2 w-full font-medium rounded-lg bg-[#02353c] hover:bg-[#f2f2f2] hover:text-[#02353c] text-white border-2 border-[#02353c] object-center"
           >
             Update Order Status
           </button>

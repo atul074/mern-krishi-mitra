@@ -6,7 +6,7 @@ function AdminProductTile({
     handleDelete,
   }) {
     return (
-      <div className="w-full max-w-sm mx-auto bg-white border border-gray-200 rounded-lg shadow-md">
+      <div className="w-full max-w-sm mx-auto h-full border bg-[#4cb08a] hover:bg-[#098354] hover:scale-105 duration-300  border-gray-400  rounded-xl overflow-hid shadow-xl shadow-black cursor-pointer m-">
         <div>
           <div className="relative">
             <img
@@ -21,12 +21,12 @@ function AdminProductTile({
               <span
                 className={`${
                   product?.salePrice > 0 ? "line-through" : ""
-                } text-lg font-semibold text-gray-700`}
+                } text-lg font-semibold text-red-700`}
               >
                 ${product?.price}
               </span>
               {product?.salePrice > 0 ? (
-                <span className="text-lg font-bold text-green-600">
+                <span className="text-lg font-bold text-red-600">
                   ${product?.salePrice}
                 </span>
               ) : null}
@@ -39,7 +39,7 @@ function AdminProductTile({
                 setCurrentEditedId(product?._id);
                 setFormData(product);
               }}
-              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-4 py-2 text-sm font-medium bg-[#02353c] hover:bg-gray-200 hover:text-[#02353c] border-[#02353c] border-2 rounded-md text-white  focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               Edit
             </button>

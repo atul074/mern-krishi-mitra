@@ -21,13 +21,13 @@ function AdminOrdersView() {
   }, [orderDetails]);
 
   return (
-    <div className="bg-white shadow-md rounded-md p-5">
+    <div className="bg-gray-200 shadow-md rounded-md p-5">
       <div className="mb-4">
         <h2 className="text-lg font-semibold">All Orders</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="min-w-full border border-gray-300">
-          <thead className="bg-gray-200">
+          <thead className="bg-gray-400">
             <tr>
               <th className="px-4 py-2 text-left">Order ID</th>
               <th className="px-4 py-2 text-left">Order Date</th>
@@ -61,7 +61,7 @@ function AdminOrdersView() {
                   <td className="px-4 py-2 text-center">
                     <button
                       onClick={() => handleFetchOrderDetails(orderItem?._id)}
-                      className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-1 px-3 rounded"
+                      className="bg-[#02353c] hover:bg-[#f2f2f2] hover:text-[#02353c] text-white border-2 border-[#02353c] font-medium py-1 px-3 rounded"
                     >
                       View Details
                     </button>
@@ -70,7 +70,7 @@ function AdminOrdersView() {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="px-4 py-2 text-center text-gray-500">
+                <td colSpan="5" className="px-4 py-2 text-center text-gray-900">
                   No orders found.
                 </td>
               </tr>
@@ -81,13 +81,13 @@ function AdminOrdersView() {
 
       {openDetailsDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center overflow-y-scroll">
-          <div className="bg-white rounded-md p-5 w-11/12 max-w-lg">
+          <div className="bg-[#d2d2d6] rounded-md p-5 w-11/12 max-w-lg">
             <button
               onClick={() => {
                 setOpenDetailsDialog(false);
                 dispatch(resetOrderDetails());
               }}
-              className="mb-4 text-red-500 font-medium border border-red-500 px-2 mt-8"
+              className="mb-4 text-red-500 font-medium border border-red-500 px-1 scale-110 hover:scale-125 duration-200 hover:bg-red-500 hover:text-black"
             >
               Close
             </button>

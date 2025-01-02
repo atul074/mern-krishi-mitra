@@ -9,7 +9,7 @@ function AdminHeader({ setOpen }) {
   }
 
   return (
-    <header className="flex items-center justify-between px-4 py-3 bg-gray-100 border-b border-gray-300">
+    <header className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-[#2eaf7d] from-10% via-[#65CCB8] via-40% to-[#2eaf7d]  to-90% ...  border-b border-gray-300">
       {/* Menu Toggle Button */}
       <button
         onClick={() => setOpen(true)}
@@ -30,13 +30,14 @@ function AdminHeader({ setOpen }) {
             d="M3.75 5.25h16.5m-16.5 6h16.5m-16.5 6h16.5"
           />
         </svg>
+        
       </button>
 
       {/* Logout Button */}
       <div className="flex flex-1 justify-end">
         <button
           onClick={handleLogout}
-          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400"
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-[#02353c] hover:bg-white hover:text-[#02353c] text-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

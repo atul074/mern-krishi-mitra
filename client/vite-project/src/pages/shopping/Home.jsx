@@ -130,7 +130,7 @@ function ShoppingHome() {
   }, [dispatch]);  
     return (
       <>
-        <section className=" bg[#2eaf7d]">
+        <section className=" bg-[#2eaf7d]">
         
         
        

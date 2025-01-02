@@ -45,7 +45,7 @@ const Login = () => {
                 <div className="mb-5">
                     <h2 className='text-center text-2xl font-bold text-[#182628] '>
                         
-लॉग इन
+Log In
                     </h2>
                 </div>
 
@@ -54,7 +54,7 @@ const Login = () => {
                     <input
                        type="email"
                        name="email"
-                       placeholder='ई-मेल एड्रेस'
+                       placeholder='e-mail address'
                        value={userLogin.email}
                        onChange={(e) => {
                            setUserLogin({
@@ -70,8 +70,7 @@ const Login = () => {
                 <div className="mb-5">
                     <input
                          type="password"
-                         placeholder='
-पासवर्ड'
+                         placeholder='password'
                          value={userLogin.password}
                          onChange={(e) => {
                              setUserLogin({
@@ -90,13 +89,13 @@ const Login = () => {
                         className='bg-[#039b17] hover:bg-[#3B945E] w-full text-white text-center py-2 font-bold rounded-md '
                     >
                          
-लॉग इन 
+Log In
                     </button>
                 </div>
 
                 <div>
-                <h2  className="text-[#3a3a3a]">   खाता नहीं है <Link className=' text-[#000000] font-bold' to={'/auth/register'}>
-                साइन अप</Link></h2>
+                <h2  className="text-[#3a3a3a]">   Don’t have an account yet?<Link className=' text-[#000000] font-bold' to={'/auth/register'}>
+                Sign Up</Link></h2>
                
                 </div>
 

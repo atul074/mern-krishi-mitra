@@ -175,16 +175,16 @@ function AdminProducts() {
     if (imageFile !== null) uploadImageToCloudinary();
   }, [imageFile]);
   return (
-    <Fragment>
-      <div className="mb-5 w-full flex justify-end">
+    <div className="bg-gray-100">
+      <div className="my-5 w-full flex justify-end ">
         <button
           onClick={() => setOpenCreateProductsDialog(true)}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="px-4 py-2 bg-[#02353c] hover:bg-white hover:text-[#02353c] text-white mr-4 rounded-lg border-2 border-[#02353c]"
         >
           Add New Product
         </button>
       </div>
-      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4 px-5 ">
          {productList && productList.length > 0
           ? productList.map((productItem) => (
             <AdminProductTile
@@ -200,8 +200,8 @@ function AdminProducts() {
       </div>
       {openCreateProductsDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-md w-96">
-            <h2 className="text-xl font-bold mb-4">
+          <div className="bg-gray-200 p-6 rounded-md w-96">
+            <h2 className="text-xl font-extrabold mb-4 text-center">
               {currentEditedId !== null ? "Edit Product" : "Add New Product"}
             </h2>
             <form onSubmit={onSubmit}>
@@ -287,7 +287,7 @@ function AdminProducts() {
               <button
                 type="submit"
                  disabled={!isFormValid()}
-                className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400"
+                className="w-full px-4 py-2 bg-[#02353c] hover:bg-[#f2f2f2] hover:text-[#02353c] text-white border-2 border-[#02353c] rounded-md disabled:bg-gray-400"
               >
                 {currentEditedId !== null ? "Edit" : "Add"}
               </button>
@@ -305,7 +305,7 @@ function AdminProducts() {
           </div>
         </div>
       )}
-    </Fragment>
+    </div>
   );
 }
 
