@@ -17,7 +17,7 @@ const shopReviewRouter = require("./routes/shop/review-routes");
 
 
 mongoose
-  .connect(process.env.MONGO_URL)
+  .connect("mongodb://localhost:27017/mern-krishi-mitra")
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log(error));
 
