@@ -71,7 +71,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
       setRating(0);
       setReviewMsg("");
       dispatch(getReviews(productDetails?._id));
-      (data?.payload)?alert("Review added successfully!"):alert("Review not added!") ;
+      (data?.payload?.success==false)?alert(data?.payload?.message): alert("Review added successfully!") ;
     });
   };
 
