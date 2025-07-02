@@ -2,6 +2,10 @@ const paypal = require("../../helpers/paypal");
 const Order = require("../../models/Order");
 const Cart = require("../../models/Cart");
 const Product = require("../../models/Product");
+const twilio =require("twilio");
+const accountSid = "AC1c8663e400401f9f21270e66eb728f92";
+const authToken = "f543ca23a48137d825dc2a8bd9bb48a4";
+const client = new twilio(accountSid, authToken);
 
 const createOrder = async (req, res) => {
   try {
@@ -199,9 +203,27 @@ const getOrderDetails = async (req, res) => {
   }
 };
 
+const sendSms=async(req,res)=>{
+  const { phone, message } = req.body;
+
+  try {
+    const sms = await client.messages.create({
+      body: message,
+      to: `+91${phone}`, 
+      from: "+18382700571", 
+    });
+
+    res.status(200).json({ success: true, sid: sms.sid });
+  } catch (error) {
+    console.error("SMS error:", error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
+
 module.exports = {
   createOrder,
   capturePayment,
   getAllOrdersByUser,
   getOrderDetails,
+  sendSms,
 };

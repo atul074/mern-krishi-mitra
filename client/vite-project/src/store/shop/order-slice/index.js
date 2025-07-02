@@ -16,7 +16,13 @@ export const createNewOrder = createAsyncThunk(
       "http://localhost:8000/api/shop/order/create",
       orderData
     );
-
+    console.log(orderData.addressInfo);
+    sessionStorage.setItem(
+      "order_data",
+      JSON.stringify(orderData)
+    );
+   // console.log(response.data);
+    
     return response.data;
   }
 );
