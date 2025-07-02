@@ -1,0 +1,14 @@
+{
+    "Maharashtra": {
+      "July": {
+        "Wheat": ["lignofert", "product1", "Pesticide A"],
+        "Rice": ["foster", "semipro"]
+      }
+    },
+    "Punjab": {
+      "August": {
+        "Corn": ["Urea", "Fungicide B"]
+      }
+    }
+  }
+  
