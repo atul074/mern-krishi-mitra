@@ -1,0 +1,35 @@
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+  
+  .suggestion-products .spinner {
+    border: 4px solid rgba(2, 53, 60, 0.1);
+    border-top: 4px solid #02353c;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .suggestion-products .form-group {
+    transition: all 0.3s ease;
+  }
+  
+  .suggestion-products .form-group:focus-within label {
+    color: #047857;
+  }
+  
+  .suggestion-products .form-group:focus-within select {
+    border-color: #047857;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+  }

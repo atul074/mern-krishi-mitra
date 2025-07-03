@@ -38,6 +38,19 @@ export const fetchProductDetails = createAsyncThunk(
   }
 );
 
+export const fetchSuggestedProducts = createAsyncThunk(
+  "/products/fetchSuggestedProducts",
+  async ({ state, month, crop }) => {
+    const result = await axios.post("http://localhost:8000/api/shop/products/suggested", {
+      state,
+      month,
+      crop,
+    });
+    return result?.data;
+  }
+);
+
+
 const shoppingProductSlice = createSlice({
   name: "shoppingProducts",
   initialState,
@@ -69,7 +82,20 @@ const shoppingProductSlice = createSlice({
       .addCase(fetchProductDetails.rejected, (state, action) => {
         state.isLoading = false;
         state.productDetails = null;
+      })
+
+      .addCase(fetchSuggestedProducts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchSuggestedProducts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.productList = action.payload.products;
+      })
+      .addCase(fetchSuggestedProducts.rejected, (state) => {
+        state.isLoading = false;
+        state.productList = [];
       });
+      
   },
 });
 
