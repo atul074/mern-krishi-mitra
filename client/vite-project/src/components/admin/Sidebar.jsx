@@ -23,6 +23,28 @@ const adminSidebarMenuItems = [
     ),
   },
   {
+    id: "chat",
+    label: "Chat",
+    path: "/admin/chat",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="w-5 h-5"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M7.5 8.25h9m-9 3.75h5.25M21 12c0 4.418-4.03 8-9 8a9.77 9.77 0 01-4.09-.88l-4.41 1.35c-.355.11-.682-.236-.564-.596l1.28-4.15A7.755 7.755 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+        />
+      </svg>
+    ),
+  },
+  
+  {
     id: "products",
     label: "Products",
     path: "/admin/products",

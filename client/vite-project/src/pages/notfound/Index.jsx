@@ -1,5 +1,19 @@
+import { useSelector } from "react-redux";
+
 function NotFound() {
-    return <h1>page not exist</h1>;
-  }
+
+  const { user, isAuthenticated, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  console.log(user);
+  console.log(isAuthenticated);
   
-  export default NotFound;
+  
+  return (<div>
+
+    <h1>page not exist</h1>
+  </div>
+  );
+}
+
+export default NotFound;

@@ -10,6 +10,7 @@ import shopAddressSlice from "./shop/address-slice";
 import shopOrderSlice from "./shop/order-slice";
 import shopSearchSlice from "./shop/search-slice";
 import shopReviewSlice from "./shop/review-slice";
+import chatSlice from "./chat_slice"; // Adjust the path as needed
 
 const Store = configureStore({
   reducer: {
@@ -24,8 +25,15 @@ const Store = configureStore({
     shopOrder: shopOrderSlice,
     shopSearch: shopSearchSlice,
     shopReview: shopReviewSlice,
-
+    chat: chatSlice,
   },
+
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware({
+  //     serializableCheck: {
+  //       ignoredPaths: ["chat.socket"], // ⛔ ignore warning ONLY IF you're absolutely forced to keep socket here
+  //     },
+  //   }),
 });
 
 export default Store;
