@@ -73,7 +73,7 @@ io.on("connection", (socket) => {
 
   socket.on("joinRoom", ({ roomId }) => {
     socket.join(roomId);
-    console.log(`Joined room ${roomId}`);
+    console.log(`Socket ${socket.id} joined room: ${roomId}`);
   });
 
   socket.on("sendMessage", async ({ roomId, senderId, message, role }) => {
@@ -90,4 +90,4 @@ io.on("connection", (socket) => {
   });
 });
 
-app.listen(PORT, () => console.log(`Server is now running on port ${PORT }`));
+server.listen(PORT, () => console.log(`Server is now running on port ${PORT }`));

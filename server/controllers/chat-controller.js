@@ -1,4 +1,5 @@
 const Message = require("../models/Message");
+const User = require("../models/User");
 
 exports.sendMessage = async (req, res) => {
   try {
@@ -22,9 +23,19 @@ exports.getMessagesByUser = async (req, res) => {
 
 exports.getAllChatUsers = async (req, res) => {
   try {
-    const users = await Message.distinct("roomId");
-    res.status(200).json({ success: true, data: users });
+    
+    const userIds = await Message.distinct("roomId");
+
+    const users = await User.find({ _id: { $in: userIds } }, "_id userName");
+
+    const formattedUsers = users.map((user) => ({
+      id: user._id,
+      userName: user.userName,
+    }));
+
+    res.status(200).json({ success: true, data: formattedUsers });
   } catch (error) {
+    console.error("Error fetching chat users:", error);
     res.status(500).json({ success: false, error: "Failed to get chat users" });
   }
 };
