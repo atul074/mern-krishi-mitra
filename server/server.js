@@ -15,6 +15,11 @@ const shopOrderRouter = require("./routes/shop/order-routes");
 const shopSearchRouter = require("./routes/shop/search-routes");
 const shopReviewRouter = require("./routes/shop/review-routes");
 
+const http = require("http");
+const { Server } = require("socket.io");
+const chatRoutes = require("./routes/chat-routes");
+const Message = require("./models/Message");
+
 
 mongoose
   .connect("mongodb://localhost:27017/mern-krishi-mitra")
@@ -22,6 +27,14 @@ mongoose
   .catch((error) => console.log(error));
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
 const PORT = process.env.PORT ||8000 ;
 app.use(
   cors({
@@ -52,5 +65,29 @@ app.use("/api/shop/address", shopAddressRouter);
 app.use("/api/shop/order", shopOrderRouter);
 app.use("/api/shop/search", shopSearchRouter);
 app.use("/api/shop/review", shopReviewRouter);
+
+app.use("/api/chat", chatRoutes);
+
+io.on("connection", (socket) => {
+  console.log("User connected:", socket.id);
+
+  socket.on("joinRoom", ({ roomId }) => {
+    socket.join(roomId);
+    console.log(`Joined room ${roomId}`);
+  });
+
+  socket.on("sendMessage", async ({ roomId, senderId, message, role }) => {
+    try {
+      const newMessage = await Message.create({ roomId, senderId, message, role });
+      io.to(roomId).emit("receiveMessage", newMessage);
+    } catch (err) {
+      console.error("Failed to save or send message:", err);
+    }
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected:", socket.id);
+  });
+});
 
 app.listen(PORT, () => console.log(`Server is now running on port ${PORT }`));

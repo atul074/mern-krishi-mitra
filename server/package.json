@@ -20,6 +20,7 @@
     "mongoose": "^8.9.1",
     "nodemon": "^3.1.9",
     "paypal-rest-sdk": "^1.8.1",
+    "socket.io": "^4.8.1",
     "twilio": "^5.7.1"
   }
 }
