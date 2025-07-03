@@ -20,6 +20,7 @@ import CheckAuth from './components/common/Check-auth'
 import PaymentSuccessPage from './pages/shopping/payment-success'
 import PaypalReturnPage from './pages/shopping/paypal-return'
 import SearchProducts from './pages/shopping/search'
+import SuggestionProducts from './pages/shopping/Suggestion'
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -89,6 +90,7 @@ if (isLoading) return(<div className='text-3xl text-center mt-40'> Loading....</
           <Route path="paypal-return" element={<PaypalReturnPage />} />
           <Route path="payment-success" element={<PaymentSuccessPage />} />
           <Route path="search" element={<SearchProducts />} />
+          <Route path="suggestion" element={<SuggestionProducts />} />
         </Route>
         <Route path="/unauth-page" element={<UnauthPage/>} />
         <Route path="*" element={<NotFound/>} />
