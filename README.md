@@ -4,6 +4,46 @@
 
 Krishi Mitra is a comprehensive e-commerce platform designed specifically for farmers, providing everything they need for successful farming operations. From seasonal product recommendations to direct expert advice, we've built a one-stop solution to empower farmers with technology.
 
+## 📸 Visual Walkthrough
+
+### Farmer Experience
+
+<div align="center">
+  <h3>Home Page & Categories</h3>
+  <img src="screenshots/home.png" alt="Home Page" width="45%">
+  <img src="screenshots/category.png" alt="Product Categories" width="45%">
+  
+  <h3>Product Discovery</h3>
+  <img src="screenshots/sort & filter.png" alt="Sorting & Filtering" width="45%">
+  <img src="screenshots/Recommendation.png" alt="Smart Recommendations" width="45%">
+  
+  <h3>Checkout & Orders</h3>
+  <img src="screenshots/checkout.png" alt="Checkout Process" width="45%">
+  <img src="screenshots/order.png" alt="Order History" width="45%">
+  
+  <h3>Expert Chat</h3>
+  <img src="screenshots/user-chat.png" alt="Farmer Chat Interface" width="90%">
+</div>
+
+---
+
+### Admin Experience
+
+<div align="center">
+  <h3>Admin Dashboard</h3>
+  
+  <h4>Product Management</h4>
+  <img src="screenshots/Admin-product-management.png" alt="Admin Product Management" width="90%">
+  
+  <h4>Order Management</h4>
+  <img src="screenshots/Admin-order-management.png" alt="Admin Order Management" width="90%">
+  
+  <h4>Expert Chat Interface</h4>
+  <img src="screenshots/Admin-chat.png" alt="Admin Chat View" width="90%">
+</div>
+
+---
+
 
 ## 🌟 Key Features
 
