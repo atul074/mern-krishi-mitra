@@ -35,75 +35,72 @@ const Login = () => {
         });
       }
 
-    return (
-        <div>
-        <div className='flex justify-center items-center h-screen  bg-center bg-cover filter  ' style={{ backgroundImage: `url(${bg})` }}>
-             
-            <div className="login_Form scale-150 bg-[#7ccda2] px-1 lg:px-8 py-6   border border-[#182628] rounded-xl shadow-md">
-
-              
-                <div className="mb-5">
-                    <h2 className='text-center text-2xl font-bold text-[#182628] '>
-                        
-Log In
-                    </h2>
-                </div>
-
-             
-                <div className="mb-3">
-                    <input
-                       type="email"
-                       name="email"
-                       placeholder='e-mail address'
-                       value={userLogin.email}
-                       onChange={(e) => {
-                           setUserLogin({
-                               ...userLogin,
-                               email: e.target.value
-                           })
-                       }}
-                        className='bg-[#C1F6ED] border border-[#3B945E] px-2 py-2 w-96 rounded-md outline-none placeholder-[#3B945E]'
-                    />
-                </div>
-
-                
-                <div className="mb-5">
-                    <input
-                         type="password"
-                         placeholder='password'
-                         value={userLogin.password}
-                         onChange={(e) => {
-                             setUserLogin({
-                                 ...userLogin,
-                                 password: e.target.value
-                             })
-                         }}
-                        className='bg-[#C1F6ED] border border-[#3B945E] px-2 py-2 w-96 rounded-md outline-none placeholder-[#3B945E]'
-                    />
-                </div>
-
-                <div className="mb-5">
-                    <button
-                        type='button'
-                        onClick={onSubmit}
-                        className='bg-[#039b17] hover:bg-[#3B945E] w-full text-white text-center py-2 font-bold rounded-md '
-                    >
-                         
-Log In
-                    </button>
-                </div>
-
-                <div>
-                <h2  className="text-[#3a3a3a]">   Don’t have an account yet?<Link className=' text-[#000000] font-bold' to={'/auth/register'}>
-                Sign Up</Link></h2>
-               
-                </div>
-
+      return (
+        <div className="relative h-screen w-full overflow-hidden">
+          {/* Blurred Background */}
+          <div
+            className="absolute inset-0 bg-cover bg-center filter blur-md scale-110"
+            style={{ backgroundImage: `url(${bg})` }}
+          ></div>
+    
+          {/* Content */}
+          <div className="relative z-10 flex justify-center items-center h-full px-4">
+            <div className="bg-[#7ccda2]/90 backdrop-blur-lg p-6 sm:p-10 rounded-2xl shadow-2xl w-full max-w-md border border-[#182628] transition-all duration-300">
+              {/* Heading */}
+              <h2 className="text-center text-3xl font-bold text-[#182628] mb-6">
+                Log In
+              </h2>
+    
+              {/* Email Field */}
+              <div className="mb-4">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="e-mail address"
+                  value={userLogin.email}
+                  onChange={(e) =>
+                    setUserLogin({ ...userLogin, email: e.target.value })
+                  }
+                  className="bg-[#C1F6ED] border border-[#3B945E] px-4 py-3 w-full rounded-md outline-none placeholder-[#3B945E] focus:ring-2 focus:ring-green-400"
+                />
+              </div>
+    
+              {/* Password Field */}
+              <div className="mb-6">
+                <input
+                  type="password"
+                  placeholder="password"
+                  value={userLogin.password}
+                  onChange={(e) =>
+                    setUserLogin({ ...userLogin, password: e.target.value })
+                  }
+                  className="bg-[#C1F6ED] border border-[#3B945E] px-4 py-3 w-full rounded-md outline-none placeholder-[#3B945E] focus:ring-2 focus:ring-green-400"
+                />
+              </div>
+    
+              {/* Login Button */}
+              <button
+                type="button"
+                onClick={onSubmit}
+                className="w-full bg-[#039b17] hover:bg-[#3B945E] text-white font-semibold py-3 rounded-md transition"
+              >
+                Log In
+              </button>
+    
+              {/* Link to Sign Up */}
+              <p className="mt-5 text-center text-[#3a3a3a]">
+                Don’t have an account yet?{" "}
+                <Link
+                  to="/auth/register"
+                  className="font-bold text-black hover:underline"
+                >
+                  Sign Up
+                </Link>
+              </p>
             </div>
-            
+          </div>
         </div>
-        </div>
-    );
+      );
 }
 
 export default Login;
