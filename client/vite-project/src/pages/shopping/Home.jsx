@@ -134,30 +134,78 @@ function ShoppingHome() {
         
         
        
-        <section className=" relative h-screen  flex flex-col items-center justify-top pt-20 text-center text-white">
-          <div className="video-docker absolute top-0 left-0 w-full h-96 overflow-hidde">
-            <video
-              className="min-w-full min-h-screen absolute object-cover"
-               src={hero}
-              type="video/mp4"
-              autoPlay
-              muted
-              loop
-            > </video>
-          </div>
-          <div 
-         initial={{ opacity: 0, scale: 0.5 }}
-         animate={{opacity: 1, scale: 1 }}
-         transition={{ duration: 1 ,delay:1 }}
-         
-        className="video-content space-y-2 z-10 px-16">
-       
-        <h3 className="font-normal text-xl mt-40">कृषि मित्र समीक्षा में आपका स्वागत है, जो आपके खेत के लिए सर्वोत्तम कृषि रसायनों को खोजने का आपका प्रमुख मंच है। यहाँ, आप अपने सह-किसानों से विस्तृत रेटिंग्स देख सकते हैं, जो आपको अपनी विशिष्ट आवश्यकताओं के अनुसार उत्पाद चुनने में मदद करती हैं। हमारे समुदाय संचालित अंतर्दृष्टि सुनिश्चित करती हैं कि आप स्वस्थ फसलों और उच्च उपज के लिए सूचित निर्णय लें। हमारे साथ जुड़ें और साझा अनुभवों के माध्यम से स्मार्ट और प्रभावी कृषि प्रथाओं को बढ़ावा दें।</h3>
-       <div className=""> 
-        <button className="px-8 py-2 bg- bg-[#4cb08a]  duration-300 rounded-lg shadow-md  my-3 p-3 text-center hover:bg-[#098354] hover:scale-110   transition-all font-bold  mt-3 text-black" onClick={()=>navigate("/shop/listing")}> Shop Products</button>
-       </div>
+        <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+  {/* Video background with gradient overlay */}
+  <div className="absolute inset-0 w-full h-full">
+    <div className="absolute inset-0  z-10"></div>
+    <video
+      className="w-full h-full object-cover"
+      src={hero}
+      autoPlay
+      muted
+      loop
+      playsInline
+    ></video>
+  </div>
+  
+  {/* Content */}
+  <div className="relative z-20 px-6 md:px-8 max-w-5xl text-center">
+    <div className="">
+      <h3 className="text-3xl md:text-4xl font-bold text-green-200 mb-6">
+        Your Digital Farming Partner
+      </h3>
+      
+      <p className="text-lg md:text-xl text-white leading-relaxed mb-8">
+        Welcome to Krishi Mitra - where farming meets smart technology! 
+        Get personalized recommendations for seeds, tools, and supplies 
+        perfectly suited to your local season and soil conditions. 
+        Connect with agricultural experts, see trusted ratings from fellow farmers, 
+        shop with confidence, and track your orders - all in one place. 
+        Join thousands of farmers who are boosting their harvests while saving time and money!
+      </p>
+      
+      <div className="mt-10">
+        <button 
+          onClick={() => navigate("/shop/listing")}
+          className="px-10 py-4 bg-[#4cb08a] hover:bg-[#098354] text-white font-bold rounded-full shadow-lg transition-all duration-300 hover:shadow-xl flex items-center justify-center mx-auto group"
+        >
+          Shop Farming Essentials
+          <svg 
+            className="ml-3 h-5 w-5 group-hover:translate-x-2 transition-transform" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
       </div>
-        </section>
+    </div>
+    
+    <div className="mt-8 flex flex-wrap justify-center gap-4">
+      <div className="bg-green-500/20 px-4 py-2 rounded-full flex items-center">
+        <svg className="h-5 w-5 mr-2 text-green-300" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+        </svg>
+        <span className="text-green-100">Season-based recommendations</span>
+      </div>
+      
+      <div className="bg-green-500/20 px-4 py-2 rounded-full flex items-center">
+        <svg className="h-5 w-5 mr-2 text-green-300" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+        </svg>
+        <span className="text-green-100">Expert farming advice</span>
+      </div>
+      
+      <div className="bg-green-500/20 px-4 py-2 rounded-full flex items-center">
+        <svg className="h-5 w-5 mr-2 text-green-300" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+        </svg>
+        <span className="text-green-100">Secure online payments</span>
+      </div>
+    </div>
+  </div>
+</section>
     
     
         </section>
