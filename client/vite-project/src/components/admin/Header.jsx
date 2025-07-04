@@ -9,7 +9,7 @@ function AdminHeader({ setOpen }) {
   }
 
   return (
-    <header className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-[#2eaf7d] from-10% via-[#65CCB8] via-40% to-[#2eaf7d]  to-90% ...  border-b border-gray-300">
+    <header className="sticky top-0 flex items-center justify-between px-4 py-3 bg-gradient-to-r from-[#2eaf7d] from-10% via-[#65CCB8] via-40% to-[#2eaf7d]  to-90% ...  border-b border-gray-300">
       {/* Menu Toggle Button */}
       <button
         onClick={() => setOpen(true)}

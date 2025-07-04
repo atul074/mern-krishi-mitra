@@ -7,7 +7,7 @@ function ShoppingLayout() {
     <div className="flex flex-col bg-[#65CCB8] overflow-hidden">
       {/* common header */}
       <ShoppingHeader/>
-      <main className="flex flex-col w-full">
+      <main className="flex flex-col w-full pt-16">
         <Outlet />
       </main>
     </div>
