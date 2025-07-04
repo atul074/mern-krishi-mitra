@@ -4,6 +4,7 @@
 
 Krishi Mitra is a comprehensive e-commerce platform designed specifically for farmers, providing everything they need for successful farming operations. From seasonal product recommendations to direct expert advice, we've built a one-stop solution to empower farmers with technology.
 
+
 ## 🌟 Key Features
 
 👨‍🌾 For Farmers (User Features)
@@ -140,4 +141,25 @@ Project Link: [https://github.com/atul074/mern-krishi-mitra]
 
 ---
 
-**Empowering Farmers Through Technology** 🌱💻
+
+Empowering Farmers Through Technology 🌱💻
+
+<div align="center"> <img src="https://img.shields.io/badge/MERN-Stack-green" alt="MERN Stack"> <img src="https://img.shields.io/badge/Socket.IO-RealTime-blue" alt="Socket.IO"> <img src="https://img.shields.io/badge/Redis-Caching-red" alt="Redis"> <img src="https://img.shields.io/badge/PayPal-Payments-blue" alt="PayPal"> </div> ```
+Key features of this integration:
+
+Organized Layout: Screenshots are grouped by functionality
+Proper Sizing:
+Paired screenshots at 45% width (side-by-side)
+Full-width screenshots at 90% width
+Descriptive Headings: Clear section titles for each group of screenshots
+Alt Text: Meaningful alt text for accessibility
+Consistent Formatting: Maintained your existing README structure
+Visual Hierarchy: Used heading levels (h3, h4) to create clear sections
+The screenshots are arranged to tell a story:
+
+Start with the farmer's journey (homepage → categories)
+Show product discovery (filtering → recommendations)
+Demonstrate purchasing (checkout → orders)
+Highlight key feature (chat interface)
+Transition to admin tools (product → order management)
+All screenshots use the exact filenames and paths you provided, and are placed in a logical sequence that matches the user flow through your application.
