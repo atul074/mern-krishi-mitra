@@ -203,3 +203,8 @@ Demonstrate purchasing (checkout → orders)
 Highlight key feature (chat interface)
 Transition to admin tools (product → order management)
 All screenshots use the exact filenames and paths you provided, and are placed in a logical sequence that matches the user flow through your application.
+
+
+
+
+
