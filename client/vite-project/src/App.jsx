@@ -26,7 +26,7 @@ import AdminChatPanel from './pages/admin/AdminChat'
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { checkAuth } from "./store/auth-slice";
+import { checkAuth } from './store/auth-slice/index.jsx';
 
 function App() {
 const { user, isAuthenticated, isLoading } = useSelector(
