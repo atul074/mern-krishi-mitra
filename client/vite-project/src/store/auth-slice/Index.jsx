@@ -63,11 +63,11 @@ const initialState = {
       const response = await axios.get(
         `${import.meta.env.VITE_BASE_URL}/api/auth/check-auth`,
         {
-          withCredentials: true,
-          headers: {
-            "Cache-Control":
-              "no-store, no-cache, must-revalidate, proxy-revalidate",
-          },
+          withCredentials: true
+          // headers: {
+          //   "Cache-Control":
+          //     "no-store, no-cache, must-revalidate, proxy-revalidate",
+          // },
         }
       );
   
