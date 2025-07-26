@@ -138,11 +138,12 @@ function AdminProducts() {
     console.log(imageFile);
     
     data.append("file", imageFile);
-    data.append("upload_preset", "myCloud");
-    data.append("cloud_name", "de7imsn1h");
+    data.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+    data.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
     //console.log(data);
     try {
-      const res = await fetch('https://api.cloudinary.com/v1_1/de7imsn1h/image/upload',{
+      const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+      const res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,{
         method : "POST",
         body : data
       })

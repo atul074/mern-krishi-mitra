@@ -12,7 +12,7 @@ export const fetchAllUsers = createAsyncThunk(
   "/users/fetchAllUsers",
   async () => {
     const result = await axios.get(
-      "http://localhost:8000/api/admin/users/get"
+      `${import.meta.env.VITE_BASE_URL}/api/admin/users/get`
     );
 
     return result?.data;

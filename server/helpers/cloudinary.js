@@ -3,9 +3,9 @@
 
 // cloudinary.config({
 
-//   cloud_name: "de7imsn1h",
-//   api_key: "198963114891834",
-//   api_secret: "91_tWkPaYmsOOJhmy6Pc8NRVGzo",
+//   cloud_name: "",
+//   api_key: "",
+//   api_secret: "",
 // });
 
 // const storage = new multer.memoryStorage();

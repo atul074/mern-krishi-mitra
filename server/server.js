@@ -19,10 +19,11 @@ const http = require("http");
 const { Server } = require("socket.io");
 const chatRoutes = require("./routes/chat-routes");
 const Message = require("./models/Message");
+//console.log("MONGO URI:", process.env.MONGODB_URL);
 
 
 mongoose
-  .connect("mongodb://localhost:27017/mern-krishi-mitra")
+  .connect(process.env.MONGODB_URL)
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log(error));
 
@@ -30,23 +31,25 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL,
     methods: ["GET", "POST"],
     credentials: true,
   },
 });
-const PORT = process.env.PORT ||8000 ;
+const PORT = process.env.PORT  ;
+//console.log(process.env.CLIENT_URL);
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST", "DELETE", "PUT"],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "Cache-Control",
-      "Expires",
-      "Pragma",
-    ],
+    origin: process.env.CLIENT_URL,
+    // methods: ["GET", "POST", "DELETE", "PUT"],
+    // allowedHeaders: [
+    //   "Content-Type",
+    //   "Authorization",
+    //   "Cache-Control",
+    //   "Expires",
+    //   "Pragma",
+    // ],
     credentials: true,
   })
 );

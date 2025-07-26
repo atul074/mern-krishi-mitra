@@ -13,7 +13,7 @@ const initialState = {
   
     async (formData) => {
       const response = await axios.post(
-        "http://localhost:8000/api/auth/register",
+        `${import.meta.env.VITE_BASE_URL}/api/auth/register`,
         formData,
         {
           withCredentials: true,
@@ -29,7 +29,7 @@ const initialState = {
   
     async (formData) => {
       const response = await axios.post(
-        "http://localhost:8000/api/auth/login",
+        `${import.meta.env.VITE_BASE_URL}/api/auth/login`,
         formData,
         {
           withCredentials: true,
@@ -45,7 +45,7 @@ const initialState = {
   
     async () => {
       const response = await axios.post(
-        "http://localhost:8000/api/auth/logout",
+        `${import.meta.env.VITE_BASE_URL}/api/auth/logout`,
         {},
         {
           withCredentials: true,
@@ -61,7 +61,7 @@ const initialState = {
   
     async () => {
       const response = await axios.get(
-        "http://localhost:8000/api/auth/check-auth",
+        `${import.meta.env.VITE_BASE_URL}/api/auth/check-auth`,
         {
           withCredentials: true,
           headers: {

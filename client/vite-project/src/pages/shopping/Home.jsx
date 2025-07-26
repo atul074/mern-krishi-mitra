@@ -258,6 +258,7 @@ function ShoppingHome() {
               ? productList.map((productItem) => (
                   <ShoppingProductTile
                     handleGetProductDetails={handleGetProductDetails}
+                    key={productItem._id}
                     product={productItem}
                     handleAddtoCart={handleAddtoCart}
                   />

@@ -1,10 +1,13 @@
+
+require('dotenv').config();
 const paypal = require("../../helpers/paypal");
 const Order = require("../../models/Order");
 const Cart = require("../../models/Cart");
 const Product = require("../../models/Product");
 const twilio =require("twilio");
-const accountSid = "AC1c8663e400401f9f21270e66eb728f92";
-const authToken = "f543ca23a48137d825dc2a8bd9bb48a4";
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+
 const client = new twilio(accountSid, authToken);
 
 const createOrder = async (req, res) => {
@@ -30,8 +33,8 @@ const createOrder = async (req, res) => {
         payment_method: "paypal",
       },
       redirect_urls: {
-        return_url: "http://localhost:5173/shop/paypal-return",
-        cancel_url: "http://localhost:5173/shop/paypal-cancel",
+        return_url: `${process.env.CLIENT_URL}/shop/paypal-return`,
+        cancel_url: `${process.env.CLIENT_URL}/shop/paypal-cancel`,
       },
       transactions: [
         {
