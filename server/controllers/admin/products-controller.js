@@ -1,6 +1,6 @@
 const Product = require("../../models/Product");
 const { imageUploadUtil } = require("../../helpers/cloudinary");
-const { clearCache } = require("../../helpers/redis");
+const { clearCache } = require("../../helpers/Redis");
 
 // Clear all product-related caches
 const clearProductCaches = async () => {
