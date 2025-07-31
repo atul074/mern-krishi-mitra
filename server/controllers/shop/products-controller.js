@@ -1,6 +1,6 @@
 const Product = require("../../models/Product");
 const product_map = require("./product_map.json");
-const { getCache, setCache, clearCache } = require("../../helpers/redis");
+const { getCache, setCache, clearCache } = require("../../helpers/Redis");
 
 // Helper to generate cache keys
 const getCacheKey = (type, identifier) => `products:${type}:${identifier}`;
