@@ -27,6 +27,34 @@ const createOrder = async (req, res) => {
       cartId,
     } = req.body;
 
+    // CASE 1: COD
+    if (paymentMethod === "cod") {
+      const newOrder = new Order({
+        userId,
+        cartId,
+        cartItems,
+        addressInfo,
+        orderStatus: "confirmed",
+        paymentMethod: "cod",
+        paymentStatus: "pending",
+        totalAmount,
+        orderDate,
+        orderUpdateDate,
+      });
+
+      await newOrder.save();
+
+      // remove cart after order placed
+      await Cart.findByIdAndDelete(cartId);
+
+      return res.status(201).json({
+        success: true,
+        message: "Order placed with Cash on Delivery",
+        orderId: newOrder._id,
+      });
+    }
+
+    // CASE 2: PayPal
     const create_payment_json = {
       intent: "sale",
       payer: {
@@ -62,7 +90,7 @@ const createOrder = async (req, res) => {
 
         return res.status(500).json({
           success: false,
-          message: "Error while creating paypal payment",
+          message: "Error while creating PayPal payment",
         });
       } else {
         const newlyCreatedOrder = new Order({
@@ -101,6 +129,7 @@ const createOrder = async (req, res) => {
     });
   }
 };
+
 
 const capturePayment = async (req, res) => {
   try {

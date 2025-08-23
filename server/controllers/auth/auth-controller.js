@@ -38,6 +38,8 @@ const registerUser = async (req, res) => {
 
 //login
 const loginUser = async (req, res) => {
+
+  const isProd = process.env.NODE_ENV === "production";
   const { email, password } = req.body;
 
   try {
@@ -71,9 +73,9 @@ const loginUser = async (req, res) => {
 
     res.cookie("token", token, { 
       httpOnly: true, 
-      secure: true,       // HTTPS only
-      sameSite: "None",   // allow cross-site
-      maxAge: 60*60*1000  // 1 hour
+      secure: isProd,                         // only true in production
+      sameSite: isProd ? "None" : "Lax",      // None for cross-site in prod, Lax for local
+      maxAge: 60 * 60 * 1000                  // 1 hour
     }).json({
       success: true,
       message: "Logged in successfully",
@@ -96,10 +98,12 @@ const loginUser = async (req, res) => {
 //logout
 
 const logoutUser = (req, res) => {
-  res.clearCookie("token",  { 
-    httpOnly: true, 
-    secure: true, 
-    sameSite: "None"
+  const isProd = process.env.NODE_ENV === "production";
+
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: isProd,
+    sameSite: isProd ? "None" : "Lax",
   }).json({
     success: true,
     message: "Logged out successfully!",
