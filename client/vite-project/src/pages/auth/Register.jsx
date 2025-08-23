@@ -1,12 +1,10 @@
-
-
-
 //import { registerUser } from "@/store/auth-slice/Index";
 import { registerUser } from "../../store/auth-slice";
 import { Link,useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import bg from "../../assets/bg.jpg"
+
 const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -14,27 +12,22 @@ const Register = () => {
         userName: "",
         email: "",
         password: "",
+        role: "user" // default role
     });
     function onSubmit(event) {
         if (userSignup.userName === "" || userSignup.email === "" || userSignup.password === "") {
-          
-            
             alert("All Fields are required");
-            
             console.log("alert");
-            
-              return;
+            return;
         }
       event.preventDefault();
       dispatch(registerUser(userSignup)).then((data) => {
         console.log(data);
         
         if (data?.payload?.success) {
-        
           alert(data?.payload?.message);
           navigate("/auth/login");
         } else {
-          
         alert(data?.payload?.message);
         }
       });
@@ -84,7 +77,7 @@ const Register = () => {
               </div>
     
               {/* Password */}
-              <div className="mb-6">
+              <div className="mb-4">
                 <input
                   type="password"
                   placeholder="password"
@@ -94,6 +87,20 @@ const Register = () => {
                   }
                   className="bg-[#C1F6ED] border border-[#3B945E] px-4 py-3 w-full rounded-md outline-none placeholder-[#3B945E] focus:ring-2 focus:ring-green-400"
                 />
+              </div>
+              
+              {/* Role Selection */}
+              <div className="mb-6">
+                <select
+                  value={userSignup.role}
+                  onChange={(e) =>
+                    setUserSignup({ ...userSignup, role: e.target.value })
+                  }
+                  className="bg-[#C1F6ED] border border-[#3B945E] px-4 py-3 w-full rounded-md outline-none text-[#3B945E] focus:ring-2 focus:ring-green-400"
+                >
+                  <option value="user">Join as Farmer</option>
+                  <option value="admin">Join as Seller</option>
+                </select>
               </div>
     
               {/* Submit Button */}
@@ -119,9 +126,6 @@ const Register = () => {
           </div>
         </div>
       );
-    
-    
-    
 }
 
 export default Register;

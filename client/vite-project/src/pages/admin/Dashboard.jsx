@@ -5,7 +5,7 @@ import {fetchAllUsers,} from "../../store/admin/users-slice";
 function AdminDashboard() {
   const { userList } = useSelector((state) => state.adminUsers);
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(fetchAllUsers());
   }, [dispatch]);

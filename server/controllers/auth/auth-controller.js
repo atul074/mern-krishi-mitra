@@ -4,7 +4,7 @@ const User = require("../../models/User");
 
 //register
 const registerUser = async (req, res) => {
-  const { userName, email, password } = req.body;
+  const { userName, email, password,role } = req.body;
 
   try {
     const checkUser = await User.findOne({ email });
@@ -19,6 +19,7 @@ const registerUser = async (req, res) => {
       userName,
       email,
       password: hashPassword,
+      role, 
     });
 
     await newUser.save();
@@ -68,7 +69,12 @@ const loginUser = async (req, res) => {
       { expiresIn: "60m" }
     );
 
-    res.cookie("token", token, { httpOnly: true, secure: false }).json({
+    res.cookie("token", token, { 
+      httpOnly: true, 
+      secure: true,       // HTTPS only
+      sameSite: "None",   // allow cross-site
+      maxAge: 60*60*1000  // 1 hour
+    }).json({
       success: true,
       message: "Logged in successfully",
       user: {
@@ -90,7 +96,11 @@ const loginUser = async (req, res) => {
 //logout
 
 const logoutUser = (req, res) => {
-  res.clearCookie("token").json({
+  res.clearCookie("token",  { 
+    httpOnly: true, 
+    secure: true, 
+    sameSite: "None"
+  }).json({
     success: true,
     message: "Logged out successfully!",
   });
