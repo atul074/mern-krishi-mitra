@@ -1,0 +1,58 @@
+import redis from 'redis';
+import 'dotenv/config';
+
+//const { REDIS_URL = 'localhost', REDIS_PORT = 6379 } = process.env;
+const REDIS_URL = process.env.REDIS_URL;
+const REDIS_PORT = process.env.REDIS_PORT;
+const REDIS_PASSWORD = process.env.REDIS_PASSWORD;
+
+const client = redis.createClient({
+  socket: {
+    host: REDIS_URL,
+    port: REDIS_PORT
+  },
+  password: REDIS_PASSWORD,
+});
+
+client.on('error', (err) => console.error('Redis Error:', err.message));
+client.on('connect', () => console.log('Redis connected'));
+
+// Connect to Redis 
+(async () => {
+  try {
+    await client.connect();
+  } catch (err) {
+    console.error('Redis connection failed. Running without cache.');
+  }
+})();
+
+// Simple cache set/get functions
+const setCache = async (key, value, ttl = 3600) => {
+  try {
+    await client.setEx(key, ttl, JSON.stringify(value));
+  } catch (err) {
+    console.error('Cache set error:', err.message);
+  }
+};
+
+const getCache = async (key) => {
+  try {
+    const data = await client.get(key);
+    return data ? JSON.parse(data) : null;
+  } catch (err) {
+    console.error('Cache get error:', err.message);
+    return null;
+  }
+};
+
+// Clear cache by pattern
+const clearCache = async (pattern) => {
+  try {
+    const keys = await client.keys(pattern);
+    if (keys.length) await client.del(keys);
+  } catch (err) {
+    console.error('Cache clear error:', err.message);
+  }
+};
+
+export { client, setCache, getCache, clearCache };
