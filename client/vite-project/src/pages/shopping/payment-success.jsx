@@ -14,8 +14,11 @@ function PaymentSuccessPage() {
     const sendSMS = async () => {
       try {
         await axios.post(`${import.meta.env.VITE_BASE_URL}/api/shop/order/sendSms`, {
-          phone: order_data.addressInfo.phone,
-          message: `Thank you! Your order on ${order_data.orderDate} for ₹${order_data.totalAmount} has been placed successfully.`,
+          orderId: orderData.id,
+          to: orderData.addressInfo.phone,
+          body: `Your order ${orderData.id} has been confirmed! Total: $${orderData.totalAmount}. Thank you for shopping with us.`
+        }, {
+          withCredentials: true,
         });
         console.log("SMS sent successfully");
       } catch (err) {

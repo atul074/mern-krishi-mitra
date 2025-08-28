@@ -11,7 +11,10 @@ export const addNewAddress = createAsyncThunk(
   async (formData) => {
     const response = await axios.post(
       `${import.meta.env.VITE_BASE_URL}/api/shop/address/add`,
-      formData
+      formData,
+      {
+        withCredentials: true,
+      }
     );
 
     return response.data;
@@ -22,19 +25,25 @@ export const fetchAllAddresses = createAsyncThunk(
   "/addresses/fetchAllAddresses",
   async (userId) => {
     const response = await axios.get(
-      `${import.meta.env.VITE_BASE_URL}/api/shop/address/get/${userId}`
+      `${import.meta.env.VITE_BASE_URL}/api/shop/address/get/${userId}`,
+      {
+        withCredentials: true,
+      }
     );
 
     return response.data;
   }
 );
 
-export const editaAddress = createAsyncThunk(
-  "/addresses/editaAddress",
+export const editAddress = createAsyncThunk(
+  "/addresses/editAddress",
   async ({ userId, addressId, formData }) => {
     const response = await axios.put(
       `${import.meta.env.VITE_BASE_URL}/api/shop/address/update/${userId}/${addressId}`,
-      formData
+      formData,
+      {
+        withCredentials: true,
+      }
     );
 
     return response.data;
@@ -45,7 +54,10 @@ export const deleteAddress = createAsyncThunk(
   "/addresses/deleteAddress",
   async ({ userId, addressId }) => {
     const response = await axios.delete(
-      `${import.meta.env.VITE_BASE_URL}/api/shop/address/delete/${userId}/${addressId}`
+      `${import.meta.env.VITE_BASE_URL}/api/shop/address/delete/${userId}/${addressId}`,
+      {
+        withCredentials: true,
+      }
     );
 
     return response.data;
@@ -61,7 +73,7 @@ const addressSlice = createSlice({
       .addCase(addNewAddress.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(addNewAddress.fulfilled, (state, action) => {
+      .addCase(addNewAddress.fulfilled, (state) => {
         state.isLoading = false;
       })
       .addCase(addNewAddress.rejected, (state) => {
