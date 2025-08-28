@@ -14,10 +14,10 @@ const shopAddressRouter = require("../routes/shop/address-routes");
 const shopOrderRouter = require("../routes/shop/order-routes");
 const shopSearchRouter = require("../routes/shop/search-routes");
 const shopReviewRouter = require("../routes/shop/review-routes");
+const chatRoutes = require("../routes/chat-routes");
 
 const http = require("http");
 const { Server } = require("socket.io");
-const chatRoutes = require("../routes/chat-routes");
 const Message = require("./models/Message");
 //console.log("MONGO URI:", process.env.MONGODB_URL);
 
