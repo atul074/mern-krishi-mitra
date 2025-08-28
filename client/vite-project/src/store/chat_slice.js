@@ -3,7 +3,9 @@ import axios from "axios";
 
 // Fetch all chat users (admin panel)
 export const fetchChatUsers = createAsyncThunk("chat/fetchChatUsers", async () => {
-  const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/chat/users`);
+  const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/chat/users`, {
+    withCredentials: true,
+  });
   //console.log(response);
   
   return response.data.data;
@@ -11,7 +13,9 @@ export const fetchChatUsers = createAsyncThunk("chat/fetchChatUsers", async () =
 
 // Fetch messages for a given roomId
 export const fetchMessages = createAsyncThunk("chat/fetchMessages", async (userId) => {
-  const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/chat/user/${userId}`);
+  const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/chat/user/${userId}`, {
+    withCredentials: true,
+  });
   return response.data.data;
 });
 

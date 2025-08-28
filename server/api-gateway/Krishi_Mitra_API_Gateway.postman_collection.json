@@ -1,0 +1,732 @@
+{
+  "info": {
+    "name": "Krishi Mitra API Gateway",
+    "description": "Complete API collection for Krishi Mitra microservices platform via API Gateway",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "noauth"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "product_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "order_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "🔐 Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userName\": \"john_doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Check Authentication",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/auth/check-auth",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "check-auth"]
+            }
+          }
+        },
+        {
+          "name": "Logout User",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{base_url}}/api/auth/logout",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "logout"]
+            }
+          }
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/forgot-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "forgot-password"]
+            }
+          }
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"reset_token_here\",\n  \"newPassword\": \"newpassword123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/reset-password",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "reset-password"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "👨‍💼 Admin - Products",
+      "item": [
+        {
+          "name": "Get All Products (Admin)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/admin/products/get",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "products", "get"]
+            }
+          }
+        },
+        {
+          "name": "Add New Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"image\": \"https://example.com/product-image.jpg\",\n  \"title\": \"Organic Fertilizer\",\n  \"description\": \"High-quality organic fertilizer for crops\",\n  \"category\": \"fertilizers\",\n  \"brand\": \"GreenGrow\",\n  \"price\": 500,\n  \"salePrice\": 450,\n  \"totalStock\": 100\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/products/add",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "products", "add"]
+            }
+          }
+        },
+        {
+          "name": "Edit Product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Product Title\",\n  \"price\": 550\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/products/edit/{{product_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "products", "edit", "{{product_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/admin/products/delete/{{product_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "products", "delete", "{{product_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Upload Product Image",
+          "request": {
+            "method": "POST",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "my_file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/products/upload-image",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "products", "upload-image"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "👨‍💼 Admin - Orders",
+      "item": [
+        {
+          "name": "Get All Orders (Admin)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/admin/orders/get",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "orders", "get"]
+            }
+          }
+        },
+        {
+          "name": "Get Order Details",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/admin/orders/details/{{order_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "orders", "details", "{{order_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderStatus\": \"shipped\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/admin/orders/update/{{order_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "orders", "update", "{{order_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "👨‍💼 Admin - Users",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/admin/users/get",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "users", "get"]
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/admin/users/delete/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "admin", "users", "delete", "{{user_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📦 Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/products?category=fertilizers&sortBy=price-lowtohigh",
+              "host": ["{{base_url}}"],
+              "path": ["api", "products"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "fertilizers"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "price-lowtohigh"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Product by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/products/{{product_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "products", "{{product_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🛒 Shopping",
+      "item": [
+        {
+          "name": "Get Shop Products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/shop/products?category=seeds&brand=Mahindra",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "products"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "seeds"
+                },
+                {
+                  "key": "brand",
+                  "value": "Mahindra"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Shop Product Details",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/shop/products/{{product_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "products", "{{product_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Search Products",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/shop/search?keyword=fertilizer",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "search"],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "fertilizer"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🛍️ Cart Management",
+      "item": [
+        {
+          "name": "Get User Cart",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/shop/cart/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "cart", "{{user_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Add to Cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{user_id}}\",\n  \"productId\": \"{{product_id}}\",\n  \"quantity\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/shop/cart/add",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "cart", "add"]
+            }
+          }
+        },
+        {
+          "name": "Update Cart",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{user_id}}\",\n  \"productId\": \"{{product_id}}\",\n  \"quantity\": 3\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/shop/cart/update-cart",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "cart", "update-cart"]
+            }
+          }
+        },
+        {
+          "name": "Remove from Cart",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/shop/cart/{{user_id}}/{{product_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "cart", "{{user_id}}", "{{product_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📍 Address Management",
+      "item": [
+        {
+          "name": "Get User Addresses",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/shop/address/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "address", "{{user_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Add New Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{user_id}}\",\n  \"address\": \"123 Farm Road\",\n  \"city\": \"Rural Town\",\n  \"pincode\": \"123456\",\n  \"phone\": \"9876543210\",\n  \"notes\": \"Near the old banyan tree\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/shop/address/add",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "address", "add"]
+            }
+          }
+        },
+        {
+          "name": "Update Address",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"address\": \"456 Updated Farm Road\",\n  \"city\": \"New Rural Town\",\n  \"pincode\": \"654321\",\n  \"phone\": \"9876543211\",\n  \"notes\": \"Updated address details\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/shop/address/update/{{user_id}}/{{address_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "address", "update", "{{user_id}}", "{{address_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Address",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/shop/address/delete/{{user_id}}/{{address_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "address", "delete", "{{user_id}}", "{{address_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "📋 Order Management",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": \"{{user_id}}\",\n  \"cartItems\": [\n    {\n      \"productId\": \"{{product_id}}\",\n      \"title\": \"Organic Fertilizer\",\n      \"image\": \"fertilizer.jpg\",\n      \"price\": 500,\n      \"quantity\": 2\n    }\n  ],\n  \"addressInfo\": {\n    \"addressId\": \"address_id_here\",\n    \"address\": \"123 Farm Road\",\n    \"city\": \"Rural Town\",\n    \"pincode\": \"123456\",\n    \"phone\": \"9876543210\"\n  },\n  \"orderStatus\": \"pending\",\n  \"paymentMethod\": \"paypal\",\n  \"paymentStatus\": \"pending\",\n  \"totalAmount\": 1000,\n  \"orderDate\": \"2024-01-15T10:30:00.000Z\",\n  \"orderUpdateDate\": \"2024-01-15T10:30:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/shop/order/create",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "order", "create"]
+            }
+          }
+        },
+        {
+          "name": "Capture Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentId\": \"payment_id_from_paypal\",\n  \"payerId\": \"payer_id_from_paypal\",\n  \"orderId\": \"{{order_id}}\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/shop/order/capture",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "order", "capture"]
+            }
+          }
+        },
+        {
+          "name": "Get User Orders",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/shop/order/list/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "order", "list", "{{user_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Order Details",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/shop/order/details/{{order_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "order", "details", "{{order_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "⭐ Reviews",
+      "item": [
+        {
+          "name": "Add Product Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"{{product_id}}\",\n  \"userId\": \"{{user_id}}\",\n  \"userName\": \"John Doe\",\n  \"reviewMessage\": \"Excellent product! Very effective for my crops.\",\n  \"reviewValue\": 5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/shop/review/add",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "review", "add"]
+            }
+          }
+        },
+        {
+          "name": "Get Product Reviews",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/shop/review/{{product_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "shop", "review", "{{product_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "💬 Chat",
+      "item": [
+        {
+          "name": "Get Chat Messages",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/chat/messages/{{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "chat", "messages", "{{user_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Send Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"senderId\": \"{{user_id}}\",\n  \"receiverId\": \"admin_user_id\",\n  \"message\": \"Hello, I need help with my order.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/chat/send",
+              "host": ["{{base_url}}"],
+              "path": ["api", "chat", "send"]
+            }
+          }
+        },
+        {
+          "name": "Get Chat Users (Admin)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/chat/users",
+              "host": ["{{base_url}}"],
+              "path": ["api", "chat", "users"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "🔧 System",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            }
+          }
+        },
+        {
+          "name": "Gateway Status",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/gateway/status",
+              "host": ["{{base_url}}"],
+              "path": ["api", "gateway", "status"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

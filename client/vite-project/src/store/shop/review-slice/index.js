@@ -11,17 +11,21 @@ export const addReview = createAsyncThunk(
   async (formdata) => {
    // console.log(formdata);
     
-    try{const response = await axios.post(
-      `${import.meta.env.VITE_BASE_URL}/api/shop/review/add`,
-      formdata
-    );}
+    try{
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/api/shop/review/add`,
+        formdata,
+        {
+          withCredentials: true,
+        }
+      );
+      //console.log(response.data);
+      return response.data;
+    }
     catch(error){
       //console.log(error.response.data);
       return error.response.data;
     }
-    //console.log(response.data);
-    
-    return response.data;
   }
 );
 

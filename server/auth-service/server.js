@@ -8,7 +8,7 @@ import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.js";
 
 import { setupSwagger } from "./utility/swagger.js";
-import * as kafkaProducer from "./utility/producer.js";        // exports: connectProducer, sendMessage, producer
+import { connectRabbitMQ, closeConnection } from "./utility/rabbitmq.js";
 import { metricsMiddleware, metricsEndpoint } from "./utility/prometheus.js"; // exports: metricsMiddleware, metricsEndpoint
 
 dotenv.config();
@@ -51,16 +51,12 @@ const start = async () => {
     await mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log("✅ MongoDB connected");
 
-    // Connect Kafka producer (non-blocking - if it fails, server still comes up)
+    // Connect RabbitMQ (non-blocking - if it fails, server still comes up)
     try {
-      if (kafkaProducer && typeof kafkaProducer.connectProducer === "function") {
-        await kafkaProducer.connectProducer();
-        console.log("✅ Kafka producer connected");
-      } else {
-        console.warn("⚠️  Kafka producer connect function not found. Skipping Kafka connection.");
-      }
-    } catch (kerr) {
-      console.error("❌ Kafka connect error (server will still start):", kerr.message);
+      await connectRabbitMQ();
+      console.log("✅ RabbitMQ connected");
+    } catch (rmqError) {
+      console.error("❌ RabbitMQ connect error (server will still start):", rmqError.message);
     }
 
     app.listen(PORT, () => {
@@ -88,4 +84,17 @@ const start = async () => {
 
 start();
 
-start();
+// Graceful shutdown
+process.on('SIGINT', async () => {
+  console.log('\n🛑 Gracefully shutting down authentication service...');
+  
+  try {
+    await closeConnection();
+    await mongoose.connection.close();
+    console.log('✅ All connections closed');
+    process.exit(0);
+  } catch (err) {
+    console.error('❌ Error during shutdown:', err);
+    process.exit(1);
+  }
+});

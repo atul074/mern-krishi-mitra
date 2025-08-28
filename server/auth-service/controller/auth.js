@@ -2,7 +2,7 @@ import User from "../model/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
-import { producer } from "../utility/producer.js";
+import { publishAuthEvent } from "../utility/rabbitmq.js";
 import { Counter } from "prom-client";
 
 // Prometheus metrics
@@ -78,20 +78,11 @@ const registerUser = async (req, res) => {
       role: newUser.role
     };
 
-    // Kafka event
+    // RabbitMQ event
     try {
-      await producer.send({
-        topic: "auth-events",
-        messages: [{ 
-          value: JSON.stringify({ 
-            type: "USER_REGISTERED", 
-            data: userResponse,
-            timestamp: new Date().toISOString()
-          }) 
-        }],
-      });
-    } catch (kafkaError) {
-      console.error("Kafka publish error:", kafkaError.message);
+      await publishAuthEvent("USER_REGISTERED", userResponse);
+    } catch (messagingError) {
+      console.error("Messaging publish error:", messagingError.message);
     }
 
     res.status(201).json({ 
@@ -151,20 +142,11 @@ const loginUser = async (req, res) => {
       role: user.role
     };
 
-    // Kafka event
+    // RabbitMQ event
     try {
-      await producer.send({
-        topic: "auth-events",
-        messages: [{ 
-          value: JSON.stringify({ 
-            type: "USER_LOGIN", 
-            data: { userId: user._id, email: user.email },
-            timestamp: new Date().toISOString()
-          }) 
-        }],
-      });
-    } catch (kafkaError) {
-      console.error("Kafka publish error:", kafkaError.message);
+      await publishAuthEvent("USER_LOGIN", { userId: user._id, email: user.email });
+    } catch (messagingError) {
+      console.error("Messaging publish error:", messagingError.message);
     }
 
     // Set cookie and send response
@@ -191,22 +173,13 @@ const loginUser = async (req, res) => {
 const logoutUser = async (req, res) => {
   countRequest(req, res);
   try {
-    // Kafka event
+    // RabbitMQ event
     try {
       if (req.user) {
-        await producer.send({
-          topic: "auth-events",
-          messages: [{ 
-            value: JSON.stringify({ 
-              type: "USER_LOGOUT", 
-              data: { userId: req.user.id },
-              timestamp: new Date().toISOString()
-            }) 
-          }],
-        });
+        await publishAuthEvent("USER_LOGOUT", { userId: req.user.id });
       }
-    } catch (kafkaError) {
-      console.error("Kafka publish error:", kafkaError.message);
+    } catch (messagingError) {
+      console.error("Messaging publish error:", messagingError.message);
     }
 
     res.clearCookie("token").status(200).json({ 
@@ -252,25 +225,16 @@ const forgotPassword = async (req, res) => {
     user.resetPasswordExpires = resetTokenExpiry;
     await user.save();
 
-    // Kafka event for password reset request
+    // RabbitMQ event for password reset request
     try {
-      await producer.send({
-        topic: "auth-events",
-        messages: [{ 
-          value: JSON.stringify({ 
-            type: "PASSWORD_RESET_REQUEST", 
-            data: { 
-              userId: user._id, 
-              email: user.email,
-              resetToken,
-              resetTokenExpiry
-            },
-            timestamp: new Date().toISOString()
-          }) 
-        }],
+      await publishAuthEvent("PASSWORD_RESET_REQUEST", { 
+        userId: user._id, 
+        email: user.email,
+        resetToken,
+        resetTokenExpiry
       });
-    } catch (kafkaError) {
-      console.error("Kafka publish error:", kafkaError.message);
+    } catch (messagingError) {
+      console.error("Messaging publish error:", messagingError.message);
     }
 
     res.status(200).json({ 
@@ -325,20 +289,11 @@ const resetPassword = async (req, res) => {
     user.resetPasswordExpires = undefined;
     await user.save();
 
-    // Kafka event
+    // RabbitMQ event
     try {
-      await producer.send({
-        topic: "auth-events",
-        messages: [{ 
-          value: JSON.stringify({ 
-            type: "PASSWORD_RESET_SUCCESS", 
-            data: { userId: user._id, email: user.email },
-            timestamp: new Date().toISOString()
-          }) 
-        }],
-      });
-    } catch (kafkaError) {
-      console.error("Kafka publish error:", kafkaError.message);
+      await publishAuthEvent("PASSWORD_RESET_SUCCESS", { userId: user._id, email: user.email });
+    } catch (messagingError) {
+      console.error("Messaging publish error:", messagingError.message);
     }
 
     res.status(200).json({ 
