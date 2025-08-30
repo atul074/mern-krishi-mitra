@@ -37,10 +37,10 @@ const generateToken = (user) => {
 const registerUser = async (req, res) => {
   countRequest(req, res);
   try {
-    const { userName, email, password } = req.body;
+    const { userName, email, password, roomNo, dept, hostelNo, phoneNo } = req.body;
 
     // Validation
-    if (!userName || !email || !password) {
+    if (!userName || !email || !password || !roomNo || !dept || !hostelNo || !phoneNo) {
       return res.status(400).json({ 
         success: false, 
         message: "All fields are required" 
@@ -67,7 +67,11 @@ const registerUser = async (req, res) => {
       userName, 
       email, 
       password: hashedPassword,
-      role: 'user'
+      role: 'user',
+      roomNo,
+      dept,
+      hostelNo,
+      phoneNo
     });
 
     // Remove password from response
@@ -75,7 +79,11 @@ const registerUser = async (req, res) => {
       id: newUser._id,
       userName: newUser.userName,
       email: newUser.email,
-      role: newUser.role
+      role: newUser.role,
+      roomNo: newUser.roomNo,
+      dept: newUser.dept,
+      hostelNo: newUser.hostelNo,
+      phoneNo: newUser.phoneNo
     };
 
     // RabbitMQ event
@@ -98,6 +106,7 @@ const registerUser = async (req, res) => {
     });
   }
 };
+
 
 // Login User
 const loginUser = async (req, res) => {
@@ -139,7 +148,11 @@ const loginUser = async (req, res) => {
       id: user._id,
       userName: user.userName,
       email: user.email,
-      role: user.role
+      role: user.role,
+      roomNo: user.roomNo,
+      dept: user.dept,
+      hostelNo: user.hostelNo,
+      phoneNo: user.phoneNo
     };
 
     // RabbitMQ event
@@ -168,6 +181,7 @@ const loginUser = async (req, res) => {
     });
   }
 };
+
 
 // Logout User
 const logoutUser = async (req, res) => {

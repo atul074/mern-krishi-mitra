@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage, fetchMessages } from "../../store/chat_slice";
-import socket from "../../Socket";
+//import socket from "../../Socket";
 import chatBg from "../../assets/chat.jpg";
 
 function UserChat() {
