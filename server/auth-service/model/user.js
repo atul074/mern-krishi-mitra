@@ -42,7 +42,27 @@ const UserSchema = new mongoose.Schema({
   lastLogin: {
     type: Date,
     default: Date.now
+  },
+
+  
+  roomNo: {
+    type: String,
+    trim: true
+  },
+  dept: {
+    type: String,
+    trim: true
+  },
+  hostelNo: {
+    type: String,
+    trim: true
+  },
+  phoneNo: {
+    type: String,
+    trim: true,
+    match: [/^\d{10}$/, 'Please enter a valid 10-digit phone number']
   }
+
 }, {
   timestamps: true
 });
